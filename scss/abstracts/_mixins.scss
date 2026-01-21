@@ -1,0 +1,13 @@
+// scss/abstracts/_mixins.scss
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'tablet' {
+    @media (min-width: 768px) { @content; }
+  }
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

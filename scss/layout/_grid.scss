@@ -1,0 +1,39 @@
+// --- SISTEMA DE 3 COLUMNAS ---
+.layout-3-cols {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  max-width: fit-content;
+
+  // Móvil: 1 sola columna
+  grid-template-columns: 1fr;
+  
+
+  // Tablet/Escritorio: 3 Columnas (1fr 3fr 1fr)
+  @include respond-to('tablet') {
+    grid-template-columns: 200px 1fr 280px; 
+    gap: 2.5rem;
+    align-items: start; // Para que no se estiren las columnas laterales
+    
+  }
+}
+
+// Estilos visuales de las columnas
+.col-sidebar {
+  background-color: rgb(254, 254, 254);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  border-radius: $border-radius;
+  position: sticky;
+  top: 100px;
+  
+  
+}
+
+.col-main {
+  background-color: white;
+  padding: 2rem;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}

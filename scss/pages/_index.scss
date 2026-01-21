@@ -1,0 +1,76 @@
+// scss/pages/_index.scss
+
+.hero {
+    display: flex;
+    align-items: center;
+    min-height: 90vh; // Un poco más alto para dar aire al diseño
+    padding: 120px 0 60px; // Espacio para que el header no lo tape
+
+    .hero-text {
+        // --- EFECTO VIDRIO ---
+        background-color: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        
+        // --- DISEÑO DESKTOP ---
+        padding: 3rem;
+        border-radius: 24px;
+        max-width: 650px;
+        z-index: 10;
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            
+            .highlight {
+                display: inline-block; // Para que el gradiente no se corte
+            }
+        }
+
+        p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        // ==========================================
+        // RESPONSIVE DESIGN (Móviles y Tablets)
+        // ==========================================
+        @media (max-width: 992px) {
+            max-width: 100%;
+            text-align: center;
+            padding: 2rem;
+            
+            h1 { font-size: 2.8rem; }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            padding: 1.5rem; // Menos padding en móviles pequeños
+            border-radius: 16px;
+
+            h1 { font-size: 2.2rem; }
+            
+            p { font-size: 1rem; }
+
+            .hero-buttons {
+                flex-direction: column; // Botones uno encima del otro
+                width: 100%;
+                
+                .btn {
+                    width: 100%; // Botones a lo ancho total
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+// scss/abstracts/_variables.scss
+
+// --- COLORES ---
+$color-primary:        #FF5A72;
+$color-secondary:      #03D0FF;
+$color-text:           #1D2128;
+$color-bg:             #f5f6fa;
+$color-white:          #ffffff;
+
+// --- GRADIENTES (Los que faltaban) ---
+$grad-purple: linear-gradient(180deg, #FF5A72 0%, #530a15 100%);
+$grad-text:   linear-gradient(to right, #FF5A72, #ffbbc5);
+
+// --- SHAPES ---
+$shape-1: #ffe8cc;
+$shape-2: #e0e7ff;
+$shape-3: #d9ffc0;
+$shape-4: #ffc3cc;
+
+// --- GLASSMORPHISM ---
+$glass-bg:     rgba(255, 255, 255, 0.73);
+$glass-border: rgba(255, 255, 255, 0.3);
+$glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+
+// --- LAYOUT ---
+$container-width: 1200px;
+$border-radius:   24px;
+$font-primary:    'Sora', sans-serif;
+
+// --- ALIAS PARA COMPATIBILIDAD ---
+$color-accent: $color-text;
+$text-main:    $color-text;

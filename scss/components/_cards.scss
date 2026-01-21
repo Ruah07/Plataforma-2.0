@@ -1,0 +1,53 @@
+// scss/components/_cards.scss
+
+// Tarjeta General (Base)
+.card {
+  background-color: white;
+  border-radius: $border-radius;
+  overflow: hidden; // Para que la imagen no se salga de las esquinas redondeadas
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 2rem;
+
+  &:hover {
+    transform: translateY(-5px); // Se levanta al pasar el mouse
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+
+  // Contenedor de imagen
+  &__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; // Asegura que la imagen no se deforme
+    background-color: #ddd; // Color de fondo mientras carga imagen
+  }
+
+  // Cuerpo de la tarjeta
+  &__body {
+    padding: 1.5rem;
+
+    h3 {
+      color: $color-accent;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    p {
+      color: lighten($color-accent, 20%);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+  }
+  
+  // Footer de la tarjeta (Precio, fecha, etc.)
+  &__footer {
+    padding: 1rem 1.5rem;
+    background-color: lighten($color-bg, 2%);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    @include flex-between; // Usamos tu mixin
+    font-size: 0.9rem;
+    color: $color-primary;
+    font-weight: 600;
+  }
+}

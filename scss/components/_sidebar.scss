@@ -1,0 +1,43 @@
+// scss/components/_sidebar.scss
+
+.sidebar-widget {
+  margin-bottom: 2rem;
+  position: sticky;
+  top: 100px;
+
+  h3 {
+    font-size: 1.1rem;
+    color: $color-accent;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid $color-secondary; // Subrayado azul tecnológico
+    display: inline-block;
+  }
+
+  ul {
+    li {
+      margin-bottom: 0.8rem;
+
+      a {
+        color: lighten($color-accent, 10%);
+        transition: color 0.2s;
+        display: flex;
+        align-items: center;
+
+        // Pequeño indicador antes del texto
+        &::before {
+          content: '•';
+          color: $color-primary;
+          font-weight: bold;
+          margin-right: 0.5rem;
+          font-size: 1.2rem;
+        }
+
+        &:hover {
+          color: $color-primary;
+          transform: translateX(5px); // Pequeño desplazamiento a la derecha
+        }
+      }
+    }
+  }
+}

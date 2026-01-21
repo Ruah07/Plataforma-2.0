@@ -1,0 +1,94 @@
+// scss/pages/_cursos.scss
+
+.courses-hero {
+    padding: 180px 0 100px;
+    background: radial-gradient(circle at top right, rgba($color-primary, 0.05), transparent);
+    
+    .hero-content {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 40px;
+    }
+
+    h1 {
+        font-size: 3.8rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.1;
+    }
+}
+
+.category-nav {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .filter-pill {
+        padding: 12px 25px;
+        border-radius: 50px;
+        border: 1px solid #eee;
+        background: white;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &.active, &:hover {
+            background: $color-primary;
+            color: white;
+            border-color: $color-primary;
+            box-shadow: 0 10px 20px rgba($color-primary, 0.2);
+        }
+    }
+}
+
+.course-card-v2 {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid #f0f0f0;
+
+    &:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+        position: relative;
+        height: 200px;
+        img { width: 100%; height: 100%; object-fit: cover; }
+        .category-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(white, 0.9);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: $color-text;
+        }
+    }
+
+    .card-body {
+        padding: 25px;
+        h3 { font-size: 1.3rem; margin-bottom: 12px; line-height: 1.3; }
+        p { color: #666; font-size: 0.95rem; margin-bottom: 20px; }
+    }
+
+    .btn-card {
+        display: block;
+        text-align: center;
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: $color-text;
+        font-weight: 700;
+        transition: 0.3s;
+        &:hover { background: $color-primary; color: white; }
+    }
+}

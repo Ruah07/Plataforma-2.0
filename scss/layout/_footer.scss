@@ -1,0 +1,137 @@
+// scss/layout/_footer.scss
+
+.main-footer {
+  background-color: white;
+    padding: 4rem;
+    border-top: 1px solid #eee;
+    margin-top: 4rem;
+    max-width: 95%;
+    margin: 0 auto;
+    border-radius: 32px 32px 0px 0px;
+
+  // --- GRID SUPERIOR (3 COLUMNAS) ---
+  .footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+    // Versión Escritorio
+    @include respond-to('tablet') {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr; // Columna 1 es el doble de ancha
+      gap: 60px;
+    }
+  }
+
+  // Estilos de la Columna 1 (Marca)
+  .brand-col {
+    .footer-logo {
+      font-family: $font-primary;
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: $color-text;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: lighten($color-text, 20%);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      max-width: 300px;
+    }
+
+    .footer-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      
+      i {
+        font-size: 1.5rem;
+        color: $color-primary;
+      }
+
+      div {
+        display: flex; flex-direction: column;
+        span { font-size: 0.85rem; color: #888; }
+        a { 
+          font-weight: 600; color: $color-text; 
+          &:hover { color: $color-primary; }
+        }
+      }
+    }
+  }
+
+  // Estilos de Columnas de Links
+  .links-col {
+    h4 {
+      font-size: 1.1rem;
+      color: $color-text;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    ul li {
+      margin-bottom: 0.8rem;
+      a {
+        color: lighten($color-text, 20%);
+        transition: color 0.3s;
+        font-size: 0.95rem;
+        &:hover { color: $color-primary; padding-left: 5px; } // Pequeño movimiento al hover
+      }
+    }
+  }
+
+  // --- SECCIÓN INFERIOR (REDES) ---
+  .footer-bottom {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  // Iconos Sociales (Copiados de tu estilo original)
+  .socials-icons {
+    display: flex;
+    gap: 15px;
+
+    .social-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; 
+      border-radius: 50%; // Círculos perfectos
+      background-color: #f0f0f0; 
+      color: #555; 
+      font-size: 18px; 
+      transition: all 0.3s ease;
+
+      // Colores Específicos (Hover)
+      &.instagram:hover { 
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); 
+        color: white; 
+        transform: translateY(-3px); 
+      }
+      &.facebook:hover { 
+        background-color: #1877F2; 
+        color: white; 
+        transform: translateY(-3px); 
+      }
+      &.youtube:hover { 
+        background-color: #FF0000; 
+        color: white; 
+        transform: translateY(-3px); 
+      }
+      &.linkedin:hover { 
+        background-color: #0A66C2; 
+        color: white; 
+        transform: translateY(-3px); 
+      }
+    }
+  }
+
+  .copyright {
+    font-size: 0.85rem;
+    color: #999;
+  }
+}

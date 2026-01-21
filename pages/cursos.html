@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIDET | Cursos</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="../index.html">
+                <img src="../assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto">
+            </a>
+
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="cursos.html" class="active">Cursos</a></li>
+                    <li><a href="cronograma.html">Cronograma</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="empresas.html">Empresas</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://capacita.cidet.org.co/" target="_blank" class="btn-campus">
+                    <i class="fa-solid fa-user-graduate"></i> Campus
+                </a>
+                <button class="menu-toggle" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="courses-hero">
+            <div class="container hero-content">
+                <div class="hero-text" data-aos="fade-right">
+                    <span class="badge-new">NUEVA CONVOCATORIA 2026</span>
+                    <h1>Eleva tu perfil con <span class="highlight">Expertos del Sector</span></h1>
+                    <p>Formaciones técnicas de alto nivel diseñadas para ingenieros y técnicos que buscan liderar la industria energética.</p>
+                </div>
+                <div class="hero-stats" data-aos="fade-left">
+                    <div class="stat-card"><strong>+12</strong><span>Cursos Activos</span></div>
+                    <div class="stat-card"><strong>100%</strong><span>Online en Vivo</span></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container main-courses-layout">
+            <nav class="category-nav" data-aos="fade-up">
+                <button class="filter-pill active" data-category="all">Todos los cursos</button>
+                <button class="filter-pill" data-category="Diseño">Diseño</button>
+                <button class="filter-pill" data-category="Seguridad">Seguridad</button>
+                <button class="filter-pill" data-category="Gestión">Gestión</button>
+                <button class="filter-pill" data-category="Infraestructura">Infraestructura</button>
+            </nav>
+
+            <section class="courses-display">
+                <div class="courses-grid" id="courseContainer">
+                    
+                    <article class="course-card-v2" data-category="Diseño" data-name="diseño y proteccion">
+                        <div class="card-header">
+                            <img src="../assets/img/diseno.jpg" alt="Curso de Diseño">
+                            <span class="category-label">Diseño</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Diseño y Protección de Sistemas Eléctricos</h3>
+                            <p>Domina RETIE y normativas internacionales para sistemas de potencia.</p>
+                            <div class="card-footer">
+                                <div class="meta">
+                                    <span><i class="fa-solid fa-calendar-check"></i> Próximo inicio: Feb 20</span>
+                                </div>
+                                <a href="curso-detalle.html?id=diseno-proteccion-sistemas" class="btn-card">Ver detalles</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div> <div id="noResults" class="no-results-v2" style="display: none;">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <h3>No encontramos coincidencias</h3>
+                    <p>Intenta con otra categoría o escríbenos para un curso personalizado.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <img src="../assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto">
+                <p>Formación profesional y consultoría experta para potenciar tu futuro.</p>
+                
+                <div class="footer-info">
+                    <i class="fa-regular fa-envelope"></i>
+                    <div>
+                        <span>Hable con nosotros</span>
+                        <a href="mailto:cidet@ejemplo.com">cidet@ejemplo.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Proyectos</h4>
+                <ul>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="cursos.html">Cursos Recientes</a></li>
+                    <li><a href="#">Casos de Éxito</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col links-col">
+                <h4>Sobre</h4>
+                <ul>
+                    <li><a href="#">Acerca de CIDET</a></li>
+                    <li><a href="#">Centro de Carreras</a></li>
+                    <li><a href="empresas.html">Para Empresas</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="container footer-bottom">
+            <div class="socials-icons">
+                <a href="#" aria-label="Instagram" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook" class="social-icon facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Youtube" class="social-icon youtube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="LinkedIn" class="social-icon linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados. | Desarrollado por RUAH Brands</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
