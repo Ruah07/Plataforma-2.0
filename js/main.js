@@ -248,10 +248,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const WHATSAPP_NUMBER = "573216365761";
 
       const message = `Hola CIDET Capacita, quiero más información sobre el curso: "${course.title}".
-Fecha: ${course.startDate || "Por confirmar"}.
-Duración: ${course.duration || "Por confirmar"}.
-Modalidad: ${course.modality || "Por confirmar"}.
-¿Me pueden ayudar con precios, horarios y proceso de inscripción?`;
+        Fecha: ${course.startDate || "Por confirmar"}.
+        Duración: ${course.duration || "Por confirmar"}.
+        Modalidad: ${course.modality || "Por confirmar"}.
+        ¿Me pueden ayudar con precios, horarios y proceso de inscripción?`;
 
       const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
