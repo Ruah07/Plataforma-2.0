@@ -1,5 +1,3 @@
-// /scss/pages/_index.scss
-
 /* ==========================================
    HERO + PARTICLES
 ========================================== */
@@ -25,7 +23,7 @@
   }
 
   .hero-text {
-    // efecto vidrio (antes lo tenías aquí también)
+    // efecto vidrio
     background-color: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -89,6 +87,7 @@
 
       h1 { font-size: 2.8rem; }
       .hero-buttons { justify-content: center; }
+      p { margin-left: auto; margin-right: auto; }
     }
 
     @media (max-width: 576px) {
@@ -107,6 +106,12 @@
     }
   }
 
+  .hero-image {
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+  }
+
   .hero-image img {
     width: 100%;
     border-radius: $border-radius;
@@ -115,6 +120,11 @@
 
     &:hover {
       transform: perspective(1000px) rotateY(0deg);
+    }
+
+    // ✅ FIX: el 3D en móvil puede “salirse” y cortar el layout
+    @media (max-width: 576px) {
+      transform: none !important;
     }
   }
 }
@@ -138,7 +148,7 @@
 }
 
 /* ==========================================
-   HOME SECTIONS (antes estaban en main.scss)
+   HOME SECTIONS
 ========================================== */
 
 // 1) Banner slide
@@ -152,6 +162,7 @@
   color: white;
   margin-bottom: 3rem;
   overflow: hidden;
+  gap: 1.5rem;
 
   .banner-content {
     max-width: 60%;
@@ -191,6 +202,29 @@
   .banner-img img {
     width: 220px;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  }
+
+  // ✅ FIX responsive: evita “cortes” en móvil
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+
+    .banner-content {
+      max-width: 100%;
+    }
+
+    .banner-img img {
+      width: 180px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+
+    .banner-img img {
+      width: 160px;
+    }
   }
 }
 
@@ -349,9 +383,14 @@
 
   h4 { font-weight: 700; margin-bottom: 0.3rem; }
   p { font-size: 0.9rem; color: #666; }
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
-// 7) Promo item (si lo usas en home)
+// 7) Promo item
 .promo-item {
   background: white;
   border-radius: 16px;
@@ -438,5 +477,40 @@
 
     .promo-image-wrapper::after { left: 150%; }
     .btn-cta i { transform: translateX(5px); }
+  }
+}
+
+// ==========================================
+// FIX: Cards cortadas en móvil (home)
+// ==========================================
+
+// En grids, evita que los hijos se salgan del contenedor (clásico)
+.layout-3-cols > * {
+  min-width: 0;
+}
+
+// Asegura que no haya elementos que “empujen” el ancho
+.hero-text,
+.content-block,
+.promo-item,
+.banner-slide,
+.filter-widget {
+  max-width: 100%;
+}
+
+// Evita cortes por textos muy largos (links o palabras)
+.col-sidebar a,
+.col-main a,
+.hero-text h1,
+.hero-text p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+// Ajuste de padding en móvil para que no “toque” el borde
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

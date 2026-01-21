@@ -1,72 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIDET | Blog</title> <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIDET | Blog</title>
 
-    <link rel="stylesheet" href="../css/main.css">
+  <link rel="icon" type="image/png" href="../assets/FaviconC.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 
-    <header class="main-header">
-    <div class="container header-content">
-        
-        <a href="../index.html">
-            <img src="/assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto">
-        </a>
+  <header class="main-header">
+  <div class="container header-content">
+    <a href="../index.html" aria-label="Ir al inicio">
+      <img src="../assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto">
+    </a>
 
-        <nav class="main-nav">
-            <ul class="nav-list">
-                <li><a href="cursos.html">Cursos</a></li>
-                <li><a href="cronograma.html">Cronograma</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="empresas.html">Empresas</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <ul class="nav-list">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="cursos.html">Cursos</a></li>
+        <li><a href="cronograma.html">Cronograma</a></li>
+        <li><a class="active" aria-current="page" href="blog.html">Blog</a></li>
+        <li><a href="empresas.html">Empresas</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
 
-        <div class="header-actions">
-            <a href="https://capacita.cidet.org.co/" target="_blank" class="btn-campus">
-                <i class="fa-solid fa-user-graduate"></i> Campus
-            </a>
-
-            <button class="menu-toggle" aria-expanded="false">
-                <span class="hamburger"></span>
-            </button>
-        </div>
-
+    <div class="header-actions">
+      <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn-campus">
+        <i class="fa-solid fa-user-graduate"></i> Campus
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menú">
+        <span class="hamburger"></span>
+      </button>
     </div>
+  </div>
 </header>
 
-    <main id="main-content" class="container page-content">
-        <div class="layout-3-cols">
-            
-            <aside class="col-sidebar left">
-                <h3>Filtros</h3>
-                <p>Categoría A</p>
-                <p>Categoría B</p>
-            </aside>
 
-            <section class="col-main">
-                <h1>Nuestros Cursos</h1>
-                <p>Aquí encontrarás el listado completo de la oferta académica.</p>
-                </section>
+  <main class="container">
+    <section class="empty-state" aria-labelledby="emptyTitle">
+      <div class="empty-state__card">
+        <img class="empty-state__img" src="../assets/img/estudiante.png" alt="" aria-hidden="true">
 
-            <aside class="col-sidebar right">
-                <h3>Destacado</h3>
-                <div class="promo-box">
-                    <p>Descuento especial este mes.</p>
-                </div>
-            </aside>
+        <h1 id="emptyTitle" class="empty-state__title">Blog en construcción 🛠️</h1>
 
+        <p class="empty-state__text">
+          Estamos preparando contenido para que aprendas, te actualices y te antojes de estudiar 😄
+          <br><strong>Gracias por tu paciencia</strong>.
+        </p>
+
+        <p class="empty-state__hint">
+          Mientras tanto, mira el <a href="cronograma.html">Cronograma</a> o regresa al <a href="../index.html">Inicio</a>.
+        </p>
+
+        <div class="empty-state__actions">
+          <a class="btn btn-primary" href="cronograma.html">Ver Cronograma</a>
+          <a class="btn btn-secondary" href="../index.html">Ir al Inicio</a>
         </div>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <footer class="main-footer">
+  <footer class="main-footer">
     <div class="container footer-grid">
         
         <div class="footer-col brand-col">
@@ -77,25 +80,23 @@
                 <i class="fa-regular fa-envelope"></i>
                 <div>
                     <span>Hable con nosotros</span>
-                    <a href="mailto:cidet@ejemplo.com">cidet@ejemplo.com</a>
+                    <a href="mailto:capacitacion@cidet.org.co">cidet@ejemplo.com</a>
                 </div>
             </div>
         </div>
 
         <div class="footer-col links-col">
-            <h4>Proyectos</h4>
+            <h4>De tu interés</h4>
             <ul>
-                <li><a href="pages/blog.html">Blog</a></li>
-                <li><a href="pages/cursos.html">Cursos Recientes</a></li>
-                <li><a href="#">Casos de Éxito</a></li>
+                <li><a href="./blog.html">Blog</a></li>
+                <li><a href="./cursos.html">Cursos Recientes</a></li>
             </ul>
         </div>
 
         <div class="footer-col links-col">
             <h4>Sobre</h4>
             <ul>
-                <li><a href="#">Acerca de CIDET</a></li>
-                <li><a href="#">Centro de Carreras</a></li>
+                <li><a href="https://cidet.org.co/nosotros/">Acerca de CIDET</a></li>
                 <li><a href="pages/empresas.html">Para Empresas</a></li>
             </ul>
         </div>
@@ -103,23 +104,23 @@
     
     <div class="container footer-bottom">
         <div class="socials-icons">
-            <a href="#" aria-label="Instagram" class="social-icon instagram">
+            <a href="https://www.instagram.com/cidet_org/" aria-label="Instagram" target="_blank" class="social-icon instagram">
                 <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="#" aria-label="Facebook" class="social-icon facebook">
+            <a href="https://www.facebook.com/CIDETColombia?_rdc=1&_rdr#" aria-label="Facebook" target="_blank" class="social-icon facebook">
                 <i class="fa-brands fa-facebook-f"></i>
             </a>
-            <a href="#" aria-label="Youtube" class="social-icon youtube">
+            <a href="https://www.youtube.com/@CIDET_ORG" aria-label="Youtube" target="_blank" class="social-icon youtube">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a href="#" aria-label="LinkedIn" class="social-icon linkedin">
+            <a href="https://www.linkedin.com/company/cidet-corporaci-n-centro-de-investigaci-n-y-desarrollo-tecnol-gico-del-sector-el-ctrico/" aria-label="LinkedIn" target="_blank" class="social-icon linkedin">
                 <i class="fa-brands fa-linkedin-in"></i>
             </a>
         </div>
-        <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados. | Desarrollado por RUAH Brands</p>
+        <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados.</p>
     </div>
 </footer>
 
-    <script src="../js/main.js"></script>
+  <script src="../js/main.js"></script>
 </body>
 </html>

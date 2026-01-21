@@ -5,39 +5,38 @@
   top: 20px;
   left: 0; right: 0;
   margin: 0 auto;
-  width: 95%; // Un poco más ancho para que quepa todo
+  width: 95%;
   max-width: 1280px;
   z-index: 1000;
 
-  // Estilo Glass (Vidrio)
   background: $glass-bg;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid $glass-border;
   box-shadow: $glass-shadow;
-  border-radius: 50px; // Píldora completa como en tu diseño original
-  padding: 0.5rem 1.5rem; // Menos altura
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
 
   .header-content {
     display: flex;
     align-items: center;
-    justify-content: space-between; // Distribuye Logo - Menú - Acciones
+    justify-content: space-between;
     position: relative;
   }
 
   // --- 1. LOGO ---
   .logo {
-    flex: 0 0 auto; // No se estira ni se encoge
+    flex: 0 0 auto;
     font-weight: 800;
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     color: $color-text;
     z-index: 102;
+
     a { text-decoration: none; color: inherit; }
   }
 
   // --- 2. NAVEGACIÓN (CENTRO) ---
   .main-nav {
-    // En escritorio, esto empuja el menú al centro absoluto
     @include respond-to('tablet') {
       position: absolute;
       left: 50%;
@@ -49,7 +48,7 @@
     // MÓVIL (Dropdown)
     display: none;
     flex-direction: column;
-    position: fixed; // Fixed para cubrir toda la pantalla o flotar mejor
+    position: fixed;
     top: 80px;
     left: 2.5%;
     width: 95%;
@@ -59,7 +58,7 @@
     padding: 2rem;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     z-index: 99;
-    
+
     &.active { display: flex; animation: slideIn 0.3s ease; }
 
     li { text-align: center; margin-bottom: 0.5rem; }
@@ -71,14 +70,22 @@
       padding: 12px;
       border-radius: 12px;
       transition: all 0.3s;
-      
+
       &:hover {
         background-color: rgba($color-primary, 0.1);
         color: $color-primary;
       }
+
+      // ✅ ACTIVO (móvil)
+      &.active,
+      &[aria-current="page"] {
+        background-color: rgba($color-primary, 0.14);
+        color: $color-primary;
+        font-weight: 800;
+      }
     }
 
-    // ESCRITORIO (Horizontal y Centrado)
+    // ESCRITORIO
     @include respond-to('tablet') {
       display: flex;
       flex-direction: row;
@@ -88,7 +95,7 @@
       box-shadow: none;
       padding: 0;
       transform: none;
-      gap: 5px; // Espacio entre botones del menú
+      gap: 5px;
 
       &.active { animation: none; }
 
@@ -98,31 +105,40 @@
         font-size: 0.95rem;
         padding: 8px 16px;
         color: $color-text;
-        border-radius: 20px; // Botones redondeados tipo píldora
+        border-radius: 20px;
 
         &:hover {
-          background-color: white; // Fondo blanco al pasar mouse
+          background-color: white;
           box-shadow: 0 4px 10px rgba(0,0,0,0.05);
           color: $color-primary;
           transform: translateY(-2px);
+        }
+
+        // ✅ ACTIVO (desktop)
+        &.active,
+        &[aria-current="page"] {
+          background-color: white;
+          box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+          color: $color-primary;
+          font-weight: 800;
+          transform: none;
         }
       }
     }
   }
 
-  // --- 3. ACCIONES DERECHA (Campus + Hamburguesa) ---
+  // --- 3. ACCIONES DERECHA ---
   .header-actions {
     display: flex;
     align-items: center;
     gap: 1rem;
     z-index: 102;
 
-    // Estilo del botón CAMPUS
     .btn-campus {
-      background: $color-text; // Fondo oscuro (Negro/Azul oscuro)
+      background: $color-text;
       color: white;
       padding: 0.6rem 1.2rem;
-      border-radius: 30px; // Muy redondeado
+      border-radius: 30px;
       font-weight: 600;
       font-size: 0.9rem;
       transition: all 0.3s;
@@ -131,29 +147,36 @@
       gap: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 
-      i { font-size: 0.8rem; } // Icono pequeño
+      i { font-size: 0.8rem; }
 
       &:hover {
-        background: $color-primary; // Cambia a rosa
+        background: $color-primary;
         transform: translateY(-2px);
         box-shadow: 0 6px 15px rgba($color-primary, 0.4);
       }
     }
 
-    // Botón Hamburguesa
     .menu-toggle {
       display: block;
       background: none; border: none; cursor: pointer;
       padding: 5px;
-      
+
       @include respond-to('tablet') { display: none; }
 
       .hamburger {
         display: block; width: 24px; height: 2px; background: $color-text;
         position: relative;
+
         &::before, &::after {
-          content: ''; position: absolute; width: 100%; height: 2px; background: $color-text; left: 0; transition: 0.3s;
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background: $color-text;
+          left: 0;
+          transition: 0.3s;
         }
+
         &::before { top: -8px; }
         &::after { top: 8px; }
       }

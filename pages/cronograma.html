@@ -15,29 +15,33 @@
 <body>
 
     <header class="main-header">
-        <div class="container header-content">
-            <a href="../index.html">
-                <img src="../assets/logo_negro.png" alt="Logo de CIDET Capacita" width="150">
-            </a>
+    <div class="container header-content">
+        <a href="../index.html" aria-label="Ir al inicio">
+        <img src="../assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto">
+        </a>
 
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li><a href="cursos.html">Cursos</a></li>
-                    <li><a href="cronograma.html" class="active">Cronograma</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="empresas.html">Empresas</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </nav>
+        <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a class="active" aria-current="page" href="cronograma.html">Cronograma</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="empresas.html">Empresas</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        </nav>
 
-            <div class="header-actions">
-                <a href="https://capacita.cidet.org.co/" target="_blank" class="btn-campus">
-                    <i class="fa-solid fa-user-graduate"></i> Campus
-                </a>
-                <button class="menu-toggle"><span class="hamburger"></span></button>
-            </div>
+        <div class="header-actions">
+        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn-campus">
+            <i class="fa-solid fa-user-graduate"></i> Campus
+        </a>
+        <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menú">
+            <span class="hamburger"></span>
+        </button>
         </div>
+    </div>
     </header>
+
 
     <main>
         <section class="page-banner">
@@ -356,49 +360,56 @@
     </main>
 
     <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-col brand-col">
-                <img src="../assets/logo_negro.png" alt="Logo de CIDET" width="150">
-                <p>Formación profesional y consultoría experta para potenciar tu futuro.</p>
-                
-                <div class="footer-info">
-                    <i class="fa-regular fa-envelope"></i>
-                    <div>
-                        <span>Hable con nosotros</span>
-                        <a href="mailto:cidet@ejemplo.com">cidet@ejemplo.com</a>
-                    </div>
+    <div class="container footer-grid">
+        
+        <div class="footer-col brand-col">
+            <img src="/assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto"></a>
+            <p>Formación profesional y consultoría experta para potenciar tu futuro.</p>
+            
+            <div class="footer-info">
+                <i class="fa-regular fa-envelope"></i>
+                <div>
+                    <span>Hable con nosotros</span>
+                    <a href="mailto:capacitacion@cidet.org.co">cidet@ejemplo.com</a>
                 </div>
             </div>
-
-            <div class="footer-col links-col">
-                <h4>Proyectos</h4>
-                <ul>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="cursos.html">Cursos Recientes</a></li>
-                    <li><a href="#">Casos de Éxito</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col links-col">
-                <h4>Sobre</h4>
-                <ul>
-                    <li><a href="#">Acerca de CIDET</a></li>
-                    <li><a href="#">Centro de Carreras</a></li>
-                    <li><a href="empresas.html">Para Empresas</a></li>
-                </ul>
-            </div>
         </div>
-        
-        <div class="container footer-bottom">
-            <div class="socials-icons">
-                <a href="#" aria-label="Instagram" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" aria-label="Facebook" class="social-icon facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" aria-label="Youtube" class="social-icon youtube"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#" aria-label="LinkedIn" class="social-icon linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-            <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados. | Desarrollado por RUAH Brands</p>
+
+        <div class="footer-col links-col">
+            <h4>De tu interés</h4>
+            <ul>
+                <li><a href="./blog.html">Blog</a></li>
+                <li><a href="./cursos.html">Cursos Recientes</a></li>
+            </ul>
         </div>
-    </footer>
+
+        <div class="footer-col links-col">
+            <h4>Sobre</h4>
+            <ul>
+                <li><a href="https://cidet.org.co/nosotros/">Acerca de CIDET</a></li>
+                <li><a href="pages/empresas.html">Para Empresas</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container footer-bottom">
+        <div class="socials-icons">
+            <a href="https://www.instagram.com/cidet_org/" aria-label="Instagram" target="_blank" class="social-icon instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/CIDETColombia?_rdc=1&_rdr#" aria-label="Facebook" target="_blank" class="social-icon facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/@CIDET_ORG" aria-label="Youtube" target="_blank" class="social-icon youtube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/cidet-corporaci-n-centro-de-investigaci-n-y-desarrollo-tecnol-gico-del-sector-el-ctrico/" aria-label="LinkedIn" target="_blank" class="social-icon linkedin">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+        </div>
+        <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados.</p>
+    </div>
+</footer>
 
     <script src="../js/main.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
