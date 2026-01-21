@@ -195,3 +195,166 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+body.modal-open { overflow: hidden; }
+
+// ==========================================
+// MODAL - Detalle de curso (Accesible)
+// ==========================================
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.modal.is-open { display: block; }
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba($color-text, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.modal__dialog {
+  position: relative;
+  width: min(720px, calc(100% - 2rem));
+  margin: 6vh auto 0;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  border: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden;
+  animation: modalIn 180ms ease-out;
+}
+
+.modal__content { padding: 1.75rem; }
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.9);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+
+  &:hover { transform: translateY(-1px); }
+  &:focus-visible { outline: 3px solid rgba($color-secondary, 0.6); outline-offset: 2px; }
+}
+
+.modal__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba($color-secondary, 0.12);
+  color: $color-secondary;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.modal__desc {
+  margin-top: 0.75rem;
+  color: rgba($color-text, 0.75);
+  line-height: 1.6;
+}
+
+.modal__meta {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: $glass-bg;
+  border: 1px solid $glass-border;
+  border-radius: 16px;
+
+  @include respond-to('tablet') { grid-template-columns: 1fr 1fr; }
+}
+
+.modal__metaItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba($color-text, 0.8);
+
+  i { color: $color-secondary; }
+}
+
+.modal__details {
+  margin-top: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 0.75rem 1rem;
+  background: #fff;
+
+  summary {
+    cursor: pointer;
+    font-weight: 800;
+    color: $color-text;
+    list-style: none;
+
+    &::-webkit-details-marker { display: none; }
+  }
+
+  p {
+    margin-top: 0.75rem;
+    color: rgba($color-text, 0.75);
+    line-height: 1.6;
+  }
+}
+
+.modal__actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+// ==========================================
+// Ajustes en acciones de cronograma
+// ==========================================
+.schedule-action {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .btn { white-space: nowrap; }
+}
+
+.schedule-card--placeholder {
+  opacity: 0.9;
+
+  &:hover {
+    transform: none;
+    border-color: rgba(0,0,0,0.05);
+    box-shadow: none;
+  }
+
+  .schedule-date {
+    background: linear-gradient(135deg, rgba($color-text,0.85), rgba($color-text,0.65));
+    box-shadow: none;
+  }
+
+  .btn[disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes modalIn {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

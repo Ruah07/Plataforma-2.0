@@ -702,6 +702,179 @@ img {
     transform: translateY(0);
   }
 }
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.modal.is-open {
+  display: block;
+}
+
+.modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(29, 33, 40, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.modal__dialog {
+  position: relative;
+  width: min(720px, 100% - 2rem);
+  margin: 6vh auto 0;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  animation: modalIn 180ms ease-out;
+}
+
+.modal__content {
+  padding: 1.75rem;
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.modal__close:hover {
+  transform: translateY(-1px);
+}
+.modal__close:focus-visible {
+  outline: 3px solid rgba(3, 208, 255, 0.6);
+  outline-offset: 2px;
+}
+
+.modal__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(3, 208, 255, 0.12);
+  color: #03D0FF;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.modal__desc {
+  margin-top: 0.75rem;
+  color: rgba(29, 33, 40, 0.75);
+  line-height: 1.6;
+}
+
+.modal__meta {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.73);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+}
+@media (min-width: 768px) {
+  .modal__meta {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.modal__metaItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(29, 33, 40, 0.8);
+}
+.modal__metaItem i {
+  color: #03D0FF;
+}
+
+.modal__details {
+  margin-top: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0.75rem 1rem;
+  background: #fff;
+}
+.modal__details summary {
+  cursor: pointer;
+  font-weight: 800;
+  color: #1D2128;
+  list-style: none;
+}
+.modal__details summary::-webkit-details-marker {
+  display: none;
+}
+.modal__details p {
+  margin-top: 0.75rem;
+  color: rgba(29, 33, 40, 0.75);
+  line-height: 1.6;
+}
+
+.modal__actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.schedule-action {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.schedule-action .btn {
+  white-space: nowrap;
+}
+
+.schedule-card--placeholder {
+  opacity: 0.9;
+}
+.schedule-card--placeholder:hover {
+  transform: none;
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: none;
+}
+.schedule-card--placeholder .schedule-date {
+  background: linear-gradient(135deg, rgba(29, 33, 40, 0.85), rgba(29, 33, 40, 0.65));
+  box-shadow: none;
+}
+.schedule-card--placeholder .btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@keyframes modalIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .courses-hero {
   padding: 180px 0 100px;
   background: radial-gradient(circle at top right, rgba(255, 90, 114, 0.05), transparent);
@@ -802,11 +975,28 @@ img {
   color: white;
 }
 
+/* ==========================================
+   HERO + PARTICLES
+========================================== */
 .hero {
-  display: flex;
+  background-color: #f5f6fa;
+  padding: 180px 0 4rem 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.hero .hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
   align-items: center;
-  min-height: 90vh;
-  padding: 120px 0 60px;
+  position: relative;
+  z-index: 3;
+}
+@media (min-width: 768px) {
+  .hero .hero-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
 }
 .hero .hero-text {
   background-color: rgba(255, 255, 255, 0.08);
@@ -817,23 +1007,48 @@ img {
   padding: 3rem;
   border-radius: 24px;
   max-width: 650px;
-  z-index: 10;
+}
+.hero .hero-text .badge {
+  background-color: rgba(255, 90, 114, 0.1);
+  color: #FF5A72;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 1rem;
 }
 .hero .hero-text h1 {
-  font-size: 3.5rem;
-  line-height: 1.1;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  color: #1D2128;
   margin-bottom: 1.5rem;
+  font-weight: 800;
 }
 .hero .hero-text h1 .highlight {
-  display: inline-block;
+  background: linear-gradient(to right, #FF5A72, #ffbbc5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #FF5A72;
+}
+@media (min-width: 768px) {
+  .hero .hero-text h1 {
+    font-size: 3.5rem;
+  }
 }
 .hero .hero-text p {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+  color: rgb(71.8695652174, 81.7826086957, 99.1304347826);
   margin-bottom: 2rem;
+  max-width: 500px;
 }
 .hero .hero-text .hero-buttons {
   display: flex;
-  gap: 15px;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 @media (max-width: 992px) {
   .hero .hero-text {
@@ -867,106 +1082,36 @@ img {
     width: 100%;
   }
 }
-
-/* ---- Contenedor Padre ---- */
-.hero {
-  background-color: #f5f6fa;
-  padding: 180px 0 4rem 0;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
+.hero .hero-image img {
+  width: 100%;
+  border-radius: 24px;
+  transform: perspective(1000px) rotateY(-5deg);
+  transition: transform 0.5s;
 }
-.hero .hero-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  align-items: center;
-  position: relative;
-  z-index: 3;
-}
-@media (min-width: 768px) {
-  .hero .hero-grid {
-    grid-template-columns: 1.2fr 1fr;
-  }
+.hero .hero-image img:hover {
+  transform: perspective(1000px) rotateY(0deg);
 }
 
-/* ---- Partículas (Fondo Dinámico) ---- */
 #particles-js {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: 2;
   background-color: #f4f4f4;
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
 }
 #particles-js canvas {
   display: block;
   vertical-align: bottom;
 }
 
-/* ---- Stats (Opcional: Solo para desarrollo) ---- */
 .count-particles {
   display: none;
 }
 
-.hero-text .badge {
-  background-color: rgba(255, 90, 114, 0.1);
-  color: #FF5A72;
-  padding: 0.5rem 1rem;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  display: inline-block;
-  margin-bottom: 1rem;
-}
-.hero-text h1 {
-  font-size: 2.5rem;
-  line-height: 1.2;
-  color: #1D2128;
-  margin-bottom: 1.5rem;
-  font-weight: 800;
-}
-.hero-text h1 .highlight {
-  background: linear-gradient(to right, #FF5A72, #ffbbc5);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #FF5A72;
-}
-@media (min-width: 768px) {
-  .hero-text h1 {
-    font-size: 3.5rem;
-  }
-}
-.hero-text p {
-  font-size: 1.1rem;
-  color: rgb(71.8695652174, 81.7826086957, 99.1304347826);
-  margin-bottom: 2rem;
-  max-width: 500px;
-}
-.hero-text .hero-buttons {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.hero-image img {
-  width: 100%;
-  border-radius: 24px;
-  transform: perspective(1000px) rotateY(-5deg);
-  transition: transform 0.5s;
-}
-.hero-image img:hover {
-  transform: perspective(1000px) rotateY(0deg);
-}
-
+/* ==========================================
+   HOME SECTIONS (antes estaban en main.scss)
+========================================== */
 .banner-slide {
   background: linear-gradient(180deg, #FF5A72 0%, #530a15 100%);
   border-radius: 24px;
@@ -1241,9 +1386,6 @@ img {
 }
 .promo-item .promo-image-wrapper {
   position: relative;
-  /* IMPORTANTE: Quitamos overflow hidden de aquí para que la imagen 
-  salga del div. Usaremos una máscara interna si necesitas brillo.
-  */
   overflow: visible;
   border-radius: 16px 16px 0 0;
   margin-top: -10px;

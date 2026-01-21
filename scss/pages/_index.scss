@@ -1,76 +1,442 @@
-// scss/pages/_index.scss
+// /scss/pages/_index.scss
+
+/* ==========================================
+   HERO + PARTICLES
+========================================== */
 
 .hero {
+  background-color: $color-bg;
+  padding: 180px 0 4rem 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+
+    @include respond-to('tablet') {
+      grid-template-columns: 1.2fr 1fr;
+    }
+  }
+
+  .hero-text {
+    // efecto vidrio (antes lo tenías aquí también)
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+
+    padding: 3rem;
+    border-radius: 24px;
+    max-width: 650px;
+
+    .badge {
+      background-color: rgba($color-primary, 0.1);
+      color: $color-primary;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      color: $color-text;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+
+      .highlight {
+        background: $grad-text;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: $color-primary;
+      }
+
+      @include respond-to('tablet') {
+        font-size: 3.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: lighten($color-text, 20%);
+      margin-bottom: 2rem;
+      max-width: 500px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 992px) {
+      max-width: 100%;
+      text-align: center;
+      padding: 2rem;
+
+      h1 { font-size: 2.8rem; }
+      .hero-buttons { justify-content: center; }
+    }
+
+    @media (max-width: 576px) {
+      padding: 1.5rem;
+      border-radius: 16px;
+
+      h1 { font-size: 2.2rem; }
+      p { font-size: 1rem; }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+
+        .btn { width: 100%; }
+      }
+    }
+  }
+
+  .hero-image img {
+    width: 100%;
+    border-radius: $border-radius;
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: transform 0.5s;
+
+    &:hover {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+  }
+}
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  z-index: 2;
+  background-color: #f4f4f4;
+
+  canvas {
+    display: block;
+    vertical-align: bottom;
+  }
+}
+
+.count-particles {
+  display: none;
+}
+
+/* ==========================================
+   HOME SECTIONS (antes estaban en main.scss)
+========================================== */
+
+// 1) Banner slide
+.banner-slide {
+  background: $grad-purple;
+  border-radius: $border-radius;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 3rem;
+  overflow: hidden;
+
+  .banner-content {
+    max-width: 60%;
+
+    .badge-new {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      color: white;
+      font-size: 2rem;
+      margin: 1rem 0;
+      font-weight: 800;
+    }
+
+    .btn-banner {
+      display: inline-block;
+      background: white;
+      color: $color-primary;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  .banner-img img {
+    width: 220px;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  }
+}
+
+// 2) Bienvenida + stats
+.content-block {
+  margin-bottom: 3rem;
+  h2 { font-weight: 800; margin-bottom: 1rem; }
+}
+
+.stats-container {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+
+  .stat-card {
+    flex: 1;
+    background: white;
+    padding: 1.5rem;
+    border-radius: $border-radius;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    min-width: 120px;
+
+    i { font-size: 1.5rem; color: $color-secondary; margin-bottom: 0.5rem; display: block; }
+    strong { display: block; font-size: 1.5rem; color: $color-text; font-weight: 800; }
+    span { font-size: 0.85rem; color: lighten($color-text, 30%); }
+  }
+}
+
+// 3) Membresías glass
+.section-membresias {
+  margin-bottom: 3rem;
+
+  .membresia-card {
+    background: $glass-bg;
+    backdrop-filter: blur(10px);
+    border: 1px solid $glass-border;
+    border-radius: $border-radius;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+    .membresia-info {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+
+      i { font-size: 3rem; color: #ffd700; }
+      h3 { font-weight: 800; color: $color-text; }
+    }
+
+    .btn-membresia {
+      background: $color-text;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-decoration: none;
+
+      &:hover { background: $color-primary; }
+    }
+  }
+}
+
+// 4) Programas
+.propuesta-valor {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+
+  .valor-card {
+    padding: 2rem;
+    border-radius: $border-radius;
+    text-align: center;
+    transition: 0.3s;
+
+    i { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    h4 { font-weight: 700; margin-bottom: 0.5rem; }
+
+    &:hover { transform: translateY(-5px); }
+
+    &.shape-1 { background: $shape-1; color: #d4832c; }
+    &.shape-2 { background: $shape-2; color: #4c6ef5; }
+    &.shape-3 { background: $shape-3; color: #51cf66; }
+    &.shape-4 { background: $shape-4; color: #ff6b6b; }
+  }
+}
+
+// 5) Categorías
+.cat-group {
+  margin-top: 3.5rem;
+
+  h3 {
     display: flex;
     align-items: center;
-    min-height: 90vh; // Un poco más alto para dar aire al diseño
-    padding: 120px 0 60px; // Espacio para que el header no lo tape
+    gap: 10px;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+}
 
-    .hero-text {
-        // --- EFECTO VIDRIO ---
-        background-color: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-        
-        // --- DISEÑO DESKTOP ---
-        padding: 3rem;
-        border-radius: 24px;
-        max-width: 650px;
-        z-index: 10;
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
 
-        h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            
-            .highlight {
-                display: inline-block; // Para que el gradiente no se corte
-            }
-        }
+.curso-mini-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border-left: 6px solid #eee;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 
-        p {
-            font-size: 1.15rem;
-            margin-bottom: 2rem;
-        }
+  &.standar { border-left-color: $color-secondary; }
+  &.premium { border-left-color: #fab005; background: #fffdf5; }
+  &.diplomado { border-left-color: $color-primary; background: #fff5f6; }
 
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
+  .tag { font-size: 0.7rem; font-weight: 800; color: #999; text-transform: uppercase; }
+  h4 { margin: 0.5rem 0; font-weight: 700; }
+  .btn-text { color: $color-primary; font-weight: 700; text-decoration: none; }
+}
 
-        // ==========================================
-        // RESPONSIVE DESIGN (Móviles y Tablets)
-        // ==========================================
-        @media (max-width: 992px) {
-            max-width: 100%;
-            text-align: center;
-            padding: 2rem;
-            
-            h1 { font-size: 2.8rem; }
-            
-            .hero-buttons {
-                justify-content: center;
-            }
-        }
+// 6) Impacto
+.impacto-section {
+  margin-top: 4rem;
+  h3 { font-weight: 800; margin-bottom: 2rem; }
+  .highlight { color: $color-primary; }
+}
 
-        @media (max-width: 576px) {
-            padding: 1.5rem; // Menos padding en móviles pequeños
-            border-radius: 16px;
+.impacto-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: $border-radius;
+  border: 1px solid #eee;
 
-            h1 { font-size: 2.2rem; }
-            
-            p { font-size: 1rem; }
+  .check-icon {
+    width: 45px;
+    height: 45px;
+    background: $color-primary;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
 
-            .hero-buttons {
-                flex-direction: column; // Botones uno encima del otro
-                width: 100%;
-                
-                .btn {
-                    width: 100%; // Botones a lo ancho total
-                }
-            }
-        }
+  h4 { font-weight: 700; margin-bottom: 0.3rem; }
+  p { font-size: 0.9rem; color: #666; }
+}
+
+// 7) Promo item (si lo usas en home)
+.promo-item {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+
+  .promo-link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+  }
+
+  .promo-image-wrapper {
+    position: relative;
+    overflow: visible;
+    border-radius: 16px 16px 0 0;
+    margin-top: -10px;
+
+    img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.4) 50%,
+        rgba(255,255,255,0) 100%
+      );
+      transform: skewX(-25deg);
+      transition: 0.7s;
+      pointer-events: none;
+      z-index: 2;
+    }
+  }
+
+  .promo-content {
+    padding: 1.2rem;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+
+    h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: $color-text; }
+    p { font-size: 0.85rem; color: #666; margin-bottom: 1.2rem; }
+  }
+
+  .btn-cta {
+    display: inline-block;
+    background: $grad-text;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba($color-primary, 0.3);
+
+    i { margin-left: 8px; transition: transform 0.3s ease; }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    z-index: 10;
+
+    .promo-image-wrapper img {
+      transform: scale(1.1) translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .promo-image-wrapper::after { left: 150%; }
+    .btn-cta i { transform: translateX(5px); }
+  }
 }
