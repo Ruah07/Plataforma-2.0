@@ -582,26 +582,74 @@ img {
   padding-bottom: 5px;
 }
 .col-filters .filter-widget .filter-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 .col-filters .filter-widget .filter-group label {
   display: block;
   font-weight: 700;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
+  color: #1D2128;
 }
 .col-filters .filter-widget .filter-group input,
 .col-filters .filter-widget .filter-group select {
   width: 100%;
-  padding: 12px;
+  padding: 12px 14px;
   border-radius: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(29, 33, 40, 0.12);
   outline: none;
   font-family: inherit;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.col-filters .filter-widget .filter-group input:focus,
-.col-filters .filter-widget .filter-group select:focus {
+.col-filters .filter-widget .filter-group input:hover,
+.col-filters .filter-widget .filter-group select:hover {
+  border-color: rgba(255, 90, 114, 0.35);
+}
+.col-filters .filter-widget .filter-group input:focus, .col-filters .filter-widget .filter-group input:focus-visible,
+.col-filters .filter-widget .filter-group select:focus,
+.col-filters .filter-widget .filter-group select:focus-visible {
   border-color: #FF5A72;
+  box-shadow: 0 0 0 4px rgba(255, 90, 114, 0.16);
+}
+.col-filters .filter-widget .filter-group .filter-tip {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  color: rgba(29, 33, 40, 0.72);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.col-filters .filter-widget .filter-group .filter-tip i {
+  color: #03D0FF;
+}
+.col-filters .filter-widget .month-picker {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-size: 16px;
+  background-color: #fff;
+  background-image: linear-gradient(transparent, transparent);
+  color: #1D2128;
+}
+.col-filters .filter-widget .month-picker::-webkit-datetime-edit {
+  color: rgba(29, 33, 40, 0.75);
+}
+.col-filters .filter-widget .month-picker:not(:placeholder-shown)::-webkit-datetime-edit {
+  color: #1D2128;
+}
+.col-filters .filter-widget .month-picker::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.col-filters .filter-widget .month-picker:hover::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+.col-filters .filter-widget .month-picker:invalid {
+  border-color: rgba(231, 76, 60, 0.65);
+  box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.12);
 }
 
 .schedule-card {
@@ -693,33 +741,6 @@ img {
   }
 }
 
-.schedule-action {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.schedule-action .btn {
-  white-space: nowrap;
-}
-
-.schedule-card--placeholder {
-  opacity: 0.9;
-}
-.schedule-card--placeholder:hover {
-  transform: none;
-  border-color: rgba(0, 0, 0, 0.05);
-  box-shadow: none;
-}
-.schedule-card--placeholder .schedule-date {
-  background: linear-gradient(135deg, rgba(29, 33, 40, 0.85), rgba(29, 33, 40, 0.65));
-  box-shadow: none;
-}
-.schedule-card--placeholder .btn[disabled] {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
 .no-results-container {
   text-align: center;
   padding: 4rem 2rem;
@@ -789,14 +810,16 @@ body.modal-open {
   border-radius: 20px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  animation: modalIn 180ms ease-out;
   max-height: calc(100svh - 2rem);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  animation: modalIn 180ms ease-out;
 }
 
 .modal__content {
   padding: 1.75rem;
+  padding-bottom: 1.25rem;
 }
 
 .modal__close {
@@ -897,7 +920,43 @@ body.modal-open {
   flex-wrap: wrap;
 }
 
-/* ===== MÓVIL: Bottom sheet + CTAs siempre visibles ===== */
+.schedule-action {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.schedule-action .btn {
+  white-space: nowrap;
+}
+
+.schedule-card--placeholder {
+  opacity: 0.9;
+}
+.schedule-card--placeholder:hover {
+  transform: none;
+  border-color: rgba(0, 0, 0, 0.05);
+  box-shadow: none;
+}
+.schedule-card--placeholder .schedule-date {
+  background: linear-gradient(135deg, rgba(29, 33, 40, 0.85), rgba(29, 33, 40, 0.65));
+  box-shadow: none;
+}
+.schedule-card--placeholder .btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@keyframes modalIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 @media (max-width: 480px) {
   .modal {
     padding: 0;
@@ -911,6 +970,8 @@ body.modal-open {
     right: 0;
     bottom: 0;
     max-height: 85svh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
     animation: sheetIn 180ms ease-out;
   }
   .modal__content {
@@ -923,20 +984,13 @@ body.modal-open {
     padding: 0.9rem 1.25rem 1rem;
     margin: 1rem -1.25rem 0;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
   }
   .modal__actions .btn {
     width: 100%;
     justify-content: center;
-  }
-}
-@keyframes modalIn {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
 @keyframes sheetIn {

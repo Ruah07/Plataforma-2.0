@@ -1,3 +1,6 @@
+// /scss/pages/_cronograma.scss
+// (Pega TODO este bloque tal cual. Mantiene tu estructura y deja SOLO el calendario type="month" + filtro por horas.)
+
 // --- ESTILOS DE CRONOGRAMA ---
 
 // Estilo para el Banner Superior (Solución al solapamiento del NAV)
@@ -84,27 +87,93 @@
     }
 
     .filter-group {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
 
       label {
         display: block;
         font-weight: 700;
         margin-bottom: 0.5rem;
         font-size: 0.9rem;
+        color: $color-text;
       }
 
       input,
       select {
         width: 100%;
-        padding: 12px;
+        padding: 12px 14px;
         border-radius: 12px;
-        border: 1px solid #ddd;
+        border: 1px solid rgba($color-text, 0.12);
         outline: none;
         font-family: inherit;
+        background: #fff;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 
-        &:focus {
-          border-color: $color-primary;
+        &:hover {
+          border-color: rgba($color-primary, 0.35);
         }
+
+        &:focus,
+        &:focus-visible {
+          border-color: $color-primary;
+          box-shadow: 0 0 0 4px rgba($color-primary, 0.16);
+        }
+      }
+
+      // Helpers / tips
+      .filter-tip {
+        margin-top: 0.6rem;
+        font-size: 0.9rem;
+        color: rgba($color-text, 0.72);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        i {
+          color: $color-secondary;
+        }
+      }
+    }
+
+    // ===============================
+    // Calendario (input type="month")
+    // ===============================
+    // Nota: solo estiliza el INPUT (campo). El popup es del navegador.
+    .month-picker {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      // para evitar que iOS haga zoom raro
+      font-size: 16px;
+
+      background-color: #fff;
+      background-image: linear-gradient(transparent, transparent);
+      color: $color-text;
+
+      &::-webkit-datetime-edit {
+        color: rgba($color-text, 0.75);
+      }
+
+      &:not(:placeholder-shown)::-webkit-datetime-edit {
+        color: $color-text;
+      }
+
+      // Icono del calendario en webkit
+      &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.8;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      &:hover::-webkit-calendar-picker-indicator {
+        opacity: 1;
+        transform: translateY(-1px);
+      }
+
+      // estados inválidos (si luego los usas)
+      &:invalid {
+        border-color: rgba(#e74c3c, 0.65);
+        box-shadow: 0 0 0 4px rgba(#e74c3c, 0.12);
       }
     }
   }
@@ -144,7 +213,6 @@
       font-weight: 800;
       display: block;
     }
-
     .month {
       font-size: 0.8rem;
       font-weight: 700;
@@ -209,37 +277,6 @@
   }
 }
 
-.schedule-action {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  flex-wrap: wrap;
-
-  .btn {
-    white-space: nowrap;
-  }
-}
-
-.schedule-card--placeholder {
-  opacity: 0.9;
-
-  &:hover {
-    transform: none;
-    border-color: rgba(0, 0, 0, 0.05);
-    box-shadow: none;
-  }
-
-  .schedule-date {
-    background: linear-gradient(135deg, rgba($color-text, 0.85), rgba($color-text, 0.65));
-    box-shadow: none;
-  }
-
-  .btn[disabled] {
-    opacity: 0.55;
-    cursor: not-allowed;
-  }
-}
-
 .no-results-container {
   text-align: center;
   padding: 4rem 2rem;
@@ -282,22 +319,21 @@
   }
 }
 
-// ==========================================
-// MODAL - Detalle de curso (Accesible)
-// Desktop: centrado + scroll interno
-// Mobile: bottom sheet + CTAs sticky
-// ==========================================
-
 body.modal-open {
   overflow: hidden;
 }
 
+// ==========================================
+// MODAL - Detalle de curso (Accesible)
+// ==========================================
 .modal {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: none;
-  padding: 1rem; // en desktop deja aire
+
+  // para permitir padding y evitar que pegue al borde
+  padding: 1rem;
 }
 
 .modal.is-open {
@@ -319,17 +355,18 @@ body.modal-open {
   border-radius: 20px;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  animation: modalIn 180ms ease-out;
 
-  // ✅ clave: scroll interno
+  // ✅ FIX: limita altura y permite scroll interno
   max-height: calc(100svh - 2rem);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-
-  animation: modalIn 180ms ease-out;
 }
 
 .modal__content {
   padding: 1.75rem;
+  padding-bottom: 1.25rem;
 }
 
 .modal__close {
@@ -349,7 +386,6 @@ body.modal-open {
   &:hover {
     transform: translateY(-1px);
   }
-
   &:focus-visible {
     outline: 3px solid rgba($color-secondary, 0.6);
     outline-offset: 2px;
@@ -435,7 +471,55 @@ body.modal-open {
   flex-wrap: wrap;
 }
 
-/* ===== MÓVIL: Bottom sheet + CTAs siempre visibles ===== */
+// ==========================================
+// Ajustes en acciones de cronograma
+// ==========================================
+.schedule-action {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .btn {
+    white-space: nowrap;
+  }
+}
+
+.schedule-card--placeholder {
+  opacity: 0.9;
+
+  &:hover {
+    transform: none;
+    border-color: rgba(0, 0, 0, 0.05);
+    box-shadow: none;
+  }
+
+  .schedule-date {
+    background: linear-gradient(135deg, rgba($color-text, 0.85), rgba($color-text, 0.65));
+    box-shadow: none;
+  }
+
+  .btn[disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// ==========================================
+// MODAL MOBILE: Bottom Sheet + Scroll OK
+// (no cambia HTML)
+// ==========================================
 @media (max-width: 480px) {
   .modal {
     padding: 0; // sheet a borde
@@ -450,7 +534,11 @@ body.modal-open {
     right: 0;
     bottom: 0;
 
+    // Altura tipo sheet
     max-height: 85svh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+
     animation: sheetIn 180ms ease-out;
   }
 
@@ -458,29 +546,22 @@ body.modal-open {
     padding: 1.25rem 1.25rem 0.75rem;
   }
 
+  // CTAs siempre visibles
   .modal__actions {
     position: sticky;
     bottom: 0;
     background: #fff;
     padding: 0.9rem 1.25rem 1rem;
-    margin: 1rem -1.25rem 0;
+    margin: 1rem -1.25rem 0; // ocupa ancho completo dentro del padding
     border-top: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
 
     .btn {
       width: 100%;
       justify-content: center;
     }
-  }
-}
-
-@keyframes modalIn {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
 

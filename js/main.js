@@ -40,33 +40,124 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ==========================================
   // 2) FILTRADO (CRONOGRAMA)
+  // - Búsqueda por texto
+  // - Mes (almanaque type="month") ✅
+  // - Intensidad horaria (rangos) ✅
   // ==========================================
   const inputSearch = $("#inputSearch");
-  const filterMonth = $("#filterMonth");
+  const filterMonthPicker = $("#filterMonthPicker"); // input type="month"
+  const filterHours = $("#filterHours"); // select intensidad
   const scheduleContainer = $("#scheduleContainer");
+  const coursesDataEl = $("#coursesData");
 
   if (inputSearch && scheduleContainer) {
     const cards = $$(".schedule-card", scheduleContainer);
+
+    // ✅ Mapa id -> curso (para sacar duración desde JSON)
+    let courseMap = {};
+    if (coursesDataEl) {
+      try {
+        const data = JSON.parse(coursesDataEl.textContent || "[]");
+        courseMap = data.reduce((acc, item) => {
+          acc[item.id] = item;
+          return acc;
+        }, {});
+      } catch (e) {
+        console.warn("coursesData inválido (para filtros):", e);
+      }
+    }
 
     const normalizeText = (text) =>
       String(text)
         .toLowerCase()
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+
+    // "24 horas" -> 24
+    const parseHours = (value) => {
+      const n = parseInt(String(value || "").match(/\d+/)?.[0] || "0", 10);
+      return Number.isFinite(n) ? n : 0;
+    };
+
+    // data-month (Ene/Feb/...) -> "01/02/..."
+    const monthMap = {
+      Ene: "01",
+      Feb: "02",
+      Mar: "03",
+      Abr: "04",
+      May: "05",
+      Jun: "06",
+      Jul: "07",
+      Ago: "08",
+      Sep: "09",
+      Oct: "10",
+      Nov: "11",
+      Dic: "12"
+    };
 
     const filterCourses = () => {
       const searchTerm = normalizeText(inputSearch.value);
-      const selectedMonth = filterMonth ? filterMonth.value : "";
+
+      // ✅ Mes (YYYY-MM) del almanaque
+      const pickedMonth = filterMonthPicker ? filterMonthPicker.value : "";
+
+      // ✅ Intensidad "min-max"
+      const hoursRange = filterHours ? filterHours.value : "";
+      const [minH, maxH] = hoursRange
+        ? hoursRange.split("-").map((x) => parseInt(x, 10))
+        : [null, null];
+
       let hasVisible = false;
 
       cards.forEach((card) => {
-        const courseName = normalizeText(card.getAttribute("data-name") || "");
+        // --- texto ---
+        const titleText = card.querySelector("h4")?.textContent || "";
+        const courseName = normalizeText(card.getAttribute("data-name") || titleText);
+
+        // --- mes abreviado ---
         const courseMonth = card.getAttribute("data-month") || "";
 
-        const matchesSearch = courseName.includes(searchTerm);
-        const matchesMonth = selectedMonth === "" || courseMonth === selectedMonth;
+        // --- id para cruzar con JSON ---
+        const courseId =
+          card.querySelector("[data-open-course]")?.getAttribute("data-open-course") ||
+          card.getAttribute("data-course-id") ||
+          "";
 
-        if (matchesSearch && matchesMonth) {
+        const courseFromJson = courseId ? courseMap[courseId] : null;
+
+        // --- horas desde JSON o fallback desde card ---
+        const hoursFromJson = courseFromJson ? parseHours(courseFromJson.duration) : 0;
+
+        const cardMetaText =
+          card.querySelector(".meta-grid")?.textContent ||
+          card.querySelector(".meta-info")?.textContent ||
+          "";
+
+        const hoursFromCard = parseHours(cardMetaText);
+        const courseHours = hoursFromJson || hoursFromCard || 0;
+
+        // ✅ matches
+        const matchesSearch = courseName.includes(searchTerm);
+
+        // ✅ mes (almanaque)
+        let matchesMonthPicker = true;
+        if (pickedMonth) {
+          const mm = monthMap[courseMonth] || "";
+          const cardMonthKey = mm ? `2026-${mm}` : "";
+          matchesMonthPicker = cardMonthKey === pickedMonth;
+        }
+
+        // ✅ intensidad
+        let matchesHours = true;
+        if (hoursRange) {
+          matchesHours = courseHours >= minH && courseHours <= maxH;
+        }
+
+        const shouldShow = matchesSearch && matchesMonthPicker && matchesHours;
+
+        if (shouldShow) {
           card.style.display = "flex";
           requestAnimationFrame(() => {
             card.style.opacity = "1";
@@ -87,7 +178,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     inputSearch.addEventListener("input", filterCourses);
-    if (filterMonth) filterMonth.addEventListener("change", filterCourses);
+    if (filterMonthPicker) filterMonthPicker.addEventListener("change", filterCourses);
+    if (filterHours) filterHours.addEventListener("change", filterCourses);
+
+    // ✅ filtra al cargar
+    filterCourses();
   }
 
   // ==========================================
@@ -177,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 6) MODAL (DETALLE DE CURSO) - CRONOGRAMA
   // ==========================================
   const modal = $("#courseModal");
-  const coursesDataEl = $("#coursesData");
+  const WHATSAPP_NUMBER = "573216365761";
 
   if (modal && coursesDataEl) {
     let courseMap = {};
@@ -201,10 +296,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const elDate = $("#courseModalDate");
     const elDuration = $("#courseModalDuration");
     const elModality = $("#courseModalModality");
+    const elSchedule = $("#courseModalSchedule");
     const elInstructor = $("#courseModalInstructor");
     const elAudience = $("#courseModalAudience");
 
-    // botones del modal (nuevos ids)
     const infoBtn = $("#courseModalInfo");
     const campusBtn = $("#courseModalCampus");
 
@@ -222,36 +317,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lastFocus = document.activeElement;
 
-      elTag.textContent = course.category || "Curso";
-      elTitle.textContent = course.title || "Curso";
-      elDesc.textContent = course.description || "Sin descripción disponible.";
-      elDate.textContent = course.startDate
-        ? `${course.startDate} (${course.monthName || course.month})`
-        : "Fecha por confirmar";
-      elDuration.textContent = course.duration || "Duración por confirmar";
-      elModality.textContent = course.modality || "Modalidad por confirmar";
-      elInstructor.textContent = course.instructor || "Instructor por confirmar";
-      elAudience.textContent = course.audience || "Información por confirmar.";
+      if (elTag) elTag.textContent = course.category || "Curso";
+      if (elTitle) elTitle.textContent = course.title || "Curso";
+      if (elDesc) elDesc.textContent = course.description || "Sin descripción disponible.";
 
-      // ✅ Campus
+      if (elDate) {
+        elDate.textContent = course.startDate
+          ? `${course.startDate} (${course.monthName || course.month})`
+          : "Fecha por confirmar";
+      }
+
+      if (elSchedule) elSchedule.textContent = course.schedule || "Horario por confirmar";
+      if (elDuration) elDuration.textContent = course.duration || "Duración por confirmar";
+      if (elModality) elModality.textContent = course.modality || "Modalidad por confirmar";
+      if (elInstructor) elInstructor.textContent = course.instructor || "Instructor por confirmar";
+      if (elAudience) elAudience.textContent = course.audience || "Información por confirmar.";
+
+      // Campus
       if (campusBtn) {
         campusBtn.href = "https://capacita.cidet.org.co/";
         campusBtn.target = "_blank";
         campusBtn.rel = "noopener noreferrer";
         campusBtn.setAttribute(
           "aria-label",
-          `Inscribirme en el campus para ${course.title} (se abre en una nueva pestaña)`
+          `Inscribirme en el campus para ${course.title || "este curso"} (se abre en una nueva pestaña)`
         );
       }
 
-      // ✅ WhatsApp con mensaje prellenado
-      const WHATSAPP_NUMBER = "573216365761";
-
-      const message = `Hola CIDET Capacita, quiero más información sobre el curso: "${course.title}".
-        Fecha: ${course.startDate || "Por confirmar"}.
-        Duración: ${course.duration || "Por confirmar"}.
-        Modalidad: ${course.modality || "Por confirmar"}.
-        ¿Me pueden ayudar con precios, horarios y proceso de inscripción?`;
+      // WhatsApp
+      const message = `Hola CIDET Capacita, quiero más información sobre el curso: "${course.title || "Curso"}".
+Fecha: ${course.startDate || "Por confirmar"}.
+Horario: ${course.schedule || "Por confirmar"}.
+Duración: ${course.duration || "Por confirmar"}.
+Modalidad: ${course.modality || "Por confirmar"}.
+¿Me pueden ayudar con precios, horarios y proceso de inscripción?`;
 
       const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
@@ -261,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
         infoBtn.rel = "noopener noreferrer";
         infoBtn.setAttribute(
           "aria-label",
-          `Solicitar información por WhatsApp sobre ${course.title} (se abre en una nueva pestaña)`
+          `Solicitar información por WhatsApp sobre ${course.title || "este curso"} (se abre en una nueva pestaña)`
         );
       }
 
@@ -270,7 +369,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("modal-open");
 
       const focusables = getFocusable();
-      (focusables[0] || dialog).focus?.();
+      (focusables[0] || dialog)?.focus?.();
     };
 
     const closeModal = () => {

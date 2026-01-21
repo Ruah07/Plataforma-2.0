@@ -1,529 +1,621 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIDET | Cronograma</title> 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="icon" href="/assets/FaviconC.png" />
-    <link rel="stylesheet" href="../css/main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIDET | Cronograma</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <link rel="icon" href="/assets/FaviconC.png" />
+  <link rel="stylesheet" href="../css/main.css" />
 </head>
+
 <body>
 
-    <header class="main-header">
+  <header class="main-header">
     <div class="container header-content">
-        <a href="../index.html" aria-label="Ir al inicio">
-        <img src="../assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto">
-        </a>
+      <a href="../index.html" aria-label="Ir al inicio">
+        <img src="../assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto" />
+      </a>
 
-        <nav class="main-nav" aria-label="Navegación principal">
+      <nav class="main-nav" aria-label="Navegación principal">
         <ul class="nav-list">
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="cursos.html">Cursos</a></li>
-            <li><a class="active" aria-current="page" href="cronograma.html">Cronograma</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="empresas.html">Empresas</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a class="active" aria-current="page" href="cronograma.html">Cronograma</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="empresas.html">Empresas</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
         </ul>
-        </nav>
+      </nav>
 
-        <div class="header-actions">
+      <div class="header-actions">
         <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn-campus">
-            <i class="fa-solid fa-user-graduate"></i> Campus
+          <i class="fa-solid fa-user-graduate"></i> Campus
         </a>
+
         <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menú">
-            <span class="hamburger"></span>
+          <span class="hamburger"></span>
         </button>
-        </div>
+      </div>
     </div>
-    </header>
+  </header>
 
+  <main>
 
-    <main>
-        <section class="page-banner">
-            <div class="container">
-                <span class="badge">Virtual Sincrónico 2026</span>
-                <h1>Cronograma <span class="highlight">Completo</span></h1>
-                <p>Todas las fechas de nuestras formaciones de enero a junio. Los demás meses estarán disponibles pronto.</p>
+    <section class="page-banner">
+      <div class="container">
+        <span class="badge">Virtual Sincrónico 2026</span>
+        <h1>Cronograma <span class="highlight">Completo</span></h1>
+        <p>Todas las fechas de nuestras formaciones de enero a junio. Los demás meses estarán disponibles pronto.</p>
+      </div>
+    </section>
+
+    <div class="container layout-2-cols">
+
+      <aside class="col-filters">
+        <div class="filter-widget" data-aos="fade-right">
+          <h3><i class="fa-solid fa-search"></i> Búsqueda</h3>
+
+          <div class="filter-group">
+            <input type="text" id="inputSearch" placeholder="¿Qué curso buscas?" />
+          </div>
+
+          <!-- ✅ SOLO CALENDARIO (type="month") -->
+          <div class="filter-group">
+            <label for="filterMonthPicker">Mes (almanaque)</label>
+            <input type="month" id="filterMonthPicker" min="2026-01" max="2026-12" />
+            <small class="helper-text">Tip: elige un mes para filtrar más rápido 😋</small>
+          </div>
+
+          <!-- ✅ Intensidad horaria -->
+          <div class="filter-group">
+            <label for="filterHours">Intensidad horaria</label>
+            <select id="filterHours">
+              <option value="">Todas</option>
+              <option value="0-8">0 a 8 horas</option>
+              <option value="9-16">9 a 16 horas</option>
+              <option value="17-24">17 a 24 horas</option>
+              <option value="25-40">25 a 40 horas</option>
+              <option value="41-999">Más de 40 horas</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+
+      <section class="col-schedule" id="scheduleContainer">
+
+        <!-- ENE placeholder -->
+        <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Ene">
+          <div class="schedule-date"><span class="day">--</span><span class="month">Ene</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Próximamente</span>
+            <h4>Estamos trabajando para traerte más contenido</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-calendar"></i> Enero 2026</span>
+              <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
             </div>
-        </section>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
+            <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
+          </div>
+        </article>
 
-        <div class="container layout-2-cols">
-            
-            <aside class="col-filters">
-                <div class="filter-widget" data-aos="fade-right">
-                    <h3><i class="fa-solid fa-search"></i> Búsqueda</h3>
-                    <div class="filter-group">
-                        <input type="text" id="inputSearch" placeholder="¿Qué curso buscas?">
-                    </div>
-                    <div class="filter-group">
-                        <label>Filtrar por Mes</label>
-                        <select id="filterMonth">
-                            <option value="">Todos los meses</option>
-                            <option value="Ene">Enero</option>
-                            <option value="Feb">Febrero</option>
-                            <option value="Mar">Marzo</option>
-                            <option value="Abr">Abril</option>
-                            <option value="May">Mayo</option>
-                            <option value="Jun">Junio</option>
-                            <option value="Jul">Julio</option>
-                            <option value="Ago">Agosto</option>
-                            <option value="Sep">Septiembre</option>
-                            <option value="Oct">Octubre</option>
-                            <option value="Nov">Noviembre</option>
-                            <option value="Dic">Diciembre</option>
-                        </select>
-                    </div>
-                </div>
-            </aside>
+        <!-- FEB -->
+        <article class="schedule-card" data-aos="fade-up"
+          data-name="retie 2024 cambios reglamentarios y gestion del riesgo electrico"
+          data-month="Feb"
+          data-course-id="retie-2024-cambios-reglamentarios-y-gestión-del-riesgo-eléct">
+          <div class="schedule-date"><span class="day">26</span><span class="month">Feb</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Infraestructura</span>
+            <h4>RETIE 2024: Cambios Reglamentarios y Gestión del Riesgo Eléctrico</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
+              <span><i class="fa-solid fa-clock"></i> 24 horas</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm js-open-course"
+              data-open-course="retie-2024-cambios-reglamentarios-y-gestión-del-riesgo-eléct">Ver detalle</button>
+            <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary btn-sm">Inscribirme</a>
+          </div>
+        </article>
 
-            <section class="col-schedule" id="scheduleContainer">
-                
-                <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Ene">
-                    <div class="schedule-date"><span class="day">--</span><span class="month">Ene</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Próximamente</span>
-                        <h4>Estamos trabajando para traerte más contenido</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-calendar"></i> Enero 2026</span>
-                            <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
-                        <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
-                    </div>
-                </article>
+        <!-- MAR -->
+        <article class="schedule-card" data-aos="fade-up"
+          data-name="reinduccion y actualizacion en trabajos con tension basado en la resolucion 5018 del 2019"
+          data-month="Mar"
+          data-course-id="reinducción-y-actualización-en-trabajos-con-tensión-basado-e">
+          <div class="schedule-date"><span class="day">03</span><span class="month">Mar</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Seguridad</span>
+            <h4>Reinducción y actualización en trabajos con tensión basado en la resolución 5018 del 2019</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
+              <span><i class="fa-solid fa-clock"></i> 40 horas</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm js-open-course"
+              data-open-course="reinducción-y-actualización-en-trabajos-con-tensión-basado-e">Ver detalle</button>
+            <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary btn-sm">Inscribirme</a>
+          </div>
+        </article>
 
-                <article class="schedule-card" data-aos="fade-up" data-name="retie 2024 cambios reglamentarios y gestion del riesgo electrico" data-month="Feb" data-course-id="retie-2024-cambios-reglamentarios-y-gestión-del-riesgo-eléct">
-                    <div class="schedule-date"><span class="day">26</span><span class="month">Feb</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Infraestructura</span>
-                        <h4>RETIE 2024: Cambios Reglamentarios y Gestión del Riesgo Eléctrico</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
-                            <span><i class="fa-solid fa-clock"></i> 24 horas</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm js-open-course" data-open-course="retie-2024-cambios-reglamentarios-y-gestión-del-riesgo-eléct">Ver detalle</button>
-                        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Inscribirme</a>
+        <!-- MAR -->
+        <article class="schedule-card" data-aos="fade-up"
+          data-name="curso trinorma iso 9001 14001 y 45001"
+          data-month="Mar"
+          data-course-id="curso-trinorma-iso-">
+          <div class="schedule-date"><span class="day">18</span><span class="month">Mar</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">NTC ISO</span>
+            <h4>Curso Trinorma (ISO 9001, 14001 y 45001)</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
+              <span><i class="fa-solid fa-clock"></i> 24 horas</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm js-open-course" data-open-course="curso-trinorma-iso-">Ver detalle</button>
+            <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Inscribirme</a>
+          </div>
+        </article>
 
-                    </div>
-                </article>
+        <!-- ABR -->
+        <article class="schedule-card" data-aos="fade-up"
+          data-name="curso de profundizacion en criterios tecnicos para el diseno de tableros electricos retie 2024"
+          data-month="Abr"
+          data-course-id="curso-de-profundización-en-criterios-técnicos-para-el-diseño">
+          <div class="schedule-date"><span class="day">07</span><span class="month">Abr</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Infraestructura</span>
+            <h4>Curso de profundización en criterios técnicos para el diseño de tableros eléctricos | RETIE 2024</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
+              <span><i class="fa-solid fa-clock"></i> 44 horas</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm js-open-course"
+              data-open-course="curso-de-profundización-en-criterios-técnicos-para-el-diseño">Ver detalle</button>
+            <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary btn-sm">Inscribirme</a>
+          </div>
+        </article>
 
-                <article class="schedule-card" data-aos="fade-up" data-name="reinduccion y actualizacion en trabajos con tension basado en la resolucion 5018 del 2019" data-month="Mar" data-course-id="reinducción-y-actualización-en-trabajos-con-tensión-basado-e">
-                    <div class="schedule-date"><span class="day">03</span><span class="month">Mar</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Seguridad</span>
-                        <h4>Reinducción y actualización en trabajos con tensión basado en la resolución 5018 del 2019</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
-                            <span><i class="fa-solid fa-clock"></i> 40 horas</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm js-open-course" data-open-course="reinducción-y-actualización-en-trabajos-con-tensión-basado-e">Ver detalle</button>
-                        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Inscribirme</a>
+        <!-- ABR -->
+        <article class="schedule-card" data-aos="fade-up"
+          data-name="elaboracion procedimientos trabajo seguro en construccion de lineas segun resolucion 5018 de 2019"
+          data-month="Abr"
+          data-course-id="elaboración-procedimientos-trabajo-seguro-en-construcción-de-">
+          <div class="schedule-date"><span class="day">27</span><span class="month">Abr</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Seguridad</span>
+            <h4>Elaboración Procedimientos Trabajo Seguro En Construcción de Líneas (Según Resolución 5018 de 2019).</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
+              <span><i class="fa-solid fa-clock"></i> 8 horas</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm js-open-course"
+              data-open-course="elaboración-procedimientos-trabajo-seguro-en-construcción-de-">Ver detalle</button>
+            <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary btn-sm">Inscribirme</a>
+          </div>
+        </article>
 
-                    </div>
-                </article>
+        <!-- MAY -->
+        <article class="schedule-card" data-aos="fade-up"
+          data-name="gestion regulatoria para el comisionamiento y puesta en marcha de pequenas centrales hidroelectricas pch"
+          data-month="May"
+          data-course-id="gestión-regulatoria-para-el-comisionamiento-y-puesta-en-marcha">
+          <div class="schedule-date"><span class="day">04</span><span class="month">May</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Energía</span>
+            <h4>Gestión Regulatoria para el Comisionamiento y Puesta en Marcha de Pequeñas Centrales Hidroeléctricas (PCH)</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
+              <span><i class="fa-solid fa-clock"></i> 12 horas</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm js-open-course"
+              data-open-course="gestión-regulatoria-para-el-comisionamiento-y-puesta-en-marcha">Ver detalle</button>
+            <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary btn-sm">Inscribirme</a>
+          </div>
+        </article>
 
-                <article class="schedule-card" data-aos="fade-up" data-name="elaboracion procedimientos trabajo seguro en construccion de lineas segun resolucion 5018 de 2019" data-month="Mar" data-course-id="elaboración-procedimientos-trabajo-seguro-en-construcción-de-">
-                    <div class="schedule-date"><span class="day">18</span><span class="month">Mar</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Seguridad</span>
-                        <h4>Elaboración Procedimientos Trabajo Seguro En Construcción de Líneas (Según Resolución 5018 de 2019).</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
-                            <span><i class="fa-solid fa-clock"></i> 8 horas</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm js-open-course" data-open-course="elaboración-procedimientos-trabajo-seguro-en-construcción-de-">Ver detalle</button>
-                        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Inscribirme</a>
+        <!-- MAY -->
+        <article class="schedule-card" data-aos="fade-up"
+          data-name="elaboracion procedimientos trabajo seguro en mantenimiento de lineas segun resolucion 5018 de 2019"
+          data-month="May"
+          data-course-id="elaboración-procedimientos-trabajo-">
+          <div class="schedule-date"><span class="day">19</span><span class="month">May</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Seguridad</span>
+            <h4>Elaboración Procedimientos Trabajo Seguro En Mantenimiento de Líneas (Según Resolución 5018 de 2019).</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
+              <span><i class="fa-solid fa-clock"></i> 8 horas</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm js-open-course"
+              data-open-course="elaboración-procedimientos-trabajo-">Ver detalle</button>
+            <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary btn-sm">Inscribirme</a>
+          </div>
+        </article>
 
-                    </div>
-                </article>
+        <!-- JUN -->
+        <article class="schedule-card" data-aos="fade-up"
+          data-name="eficiencia energetica para las industrias"
+          data-month="Jun"
+          data-course-id="eficiencia-energética-para-las-industrias">
+          <div class="schedule-date"><span class="day">10</span><span class="month">Jun</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Gestión</span>
+            <h4>Eficiencia Energética para las Industrias</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
+              <span><i class="fa-solid fa-clock"></i> 6 horas</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm js-open-course"
+              data-open-course="eficiencia-energética-para-las-industrias">Ver detalle</button>
+            <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer"
+              class="btn btn-primary btn-sm">Inscribirme</a>
+          </div>
+        </article>
 
-                <article class="schedule-card" data-aos="fade-up" data-name="curso de profundizacion en criterios tecnicos para el diseno de tableros electricos retie 2024" data-month="Abr" data-course-id="curso-de-profundización-en-criterios-técnicos-para-el-diseño">
-                    <div class="schedule-date"><span class="day">07</span><span class="month">Abr</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Infraestructura</span>
-                        <h4>Curso de profundización en criterios técnicos para el diseño de tableros eléctricos – RETIE 2024</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
-                            <span><i class="fa-solid fa-clock"></i> 44 horas</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm js-open-course" data-open-course="curso-de-profundización-en-criterios-técnicos-para-el-diseño">Ver detalle</button>
-                        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Inscribirme</a>
-                    </div>
-                </article>
+        <!-- JUL placeholder -->
+        <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Jul">
+          <div class="schedule-date"><span class="day">--</span><span class="month">Jul</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Próximamente</span>
+            <h4>Estamos trabajando para traerte más contenido</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-calendar"></i> Julio 2026</span>
+              <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
+            <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
+          </div>
+        </article>
 
-                <article class="schedule-card" data-aos="fade-up" data-name="elaboracion procedimientos trabajo seguro en mantenimiento de lineas segun resolucion 5018 de 2019" data-month="Abr" data-course-id="elaboración-procedimientos-trabajo-seguro-en-mantenimiento-de">
-                    <div class="schedule-date"><span class="day">27</span><span class="month">Abr</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Seguridad</span>
-                        <h4>Elaboración Procedimientos Trabajo Seguro En Mantenimiento de Líneas (Según Resolución 5018 de 2019).</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
-                            <span><i class="fa-solid fa-clock"></i> 8 horas</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm js-open-course" data-open-course="elaboración-procedimientos-trabajo-seguro-en-mantenimiento-de">Ver detalle</button>
-                        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Inscribirme</a>
-                    </div>
-                </article>
+        <!-- AGO placeholder -->
+        <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Ago">
+          <div class="schedule-date"><span class="day">--</span><span class="month">Ago</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Próximamente</span>
+            <h4>Estamos trabajando para traerte más contenido</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-calendar"></i> Agosto 2026</span>
+              <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
+            <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
+          </div>
+        </article>
 
-                <article class="schedule-card" data-aos="fade-up" data-name="gestion regulatoria para el comisionamiento y puesta en marcha de pequenas centrales hidroelectricas pch" data-month="May" data-course-id="gestión-regulatoria-para-el-comisionamiento-y-puesta-en-marcha">
-                    <div class="schedule-date"><span class="day">04</span><span class="month">May</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Energía</span>
-                        <h4>Gestión Regulatoria para el Comisionamiento y Puesta en Marcha de Pequeñas Centrales Hidroeléctricas (PCH)</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
-                            <span><i class="fa-solid fa-clock"></i> 12 horas</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm js-open-course" data-open-course="gestión-regulatoria-para-el-comisionamiento-y-puesta-en-marcha">Ver detalle</button>
-                        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Inscribirme</a>
-                    </div>
-                </article>
+        <!-- SEP placeholder -->
+        <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Sep">
+          <div class="schedule-date"><span class="day">--</span><span class="month">Sep</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Próximamente</span>
+            <h4>Estamos trabajando para traerte más contenido</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-calendar"></i> Septiembre 2026</span>
+              <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
+            <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
+          </div>
+        </article>
 
-                <article class="schedule-card" data-aos="fade-up" data-name="eficiencia energetica para las industrias" data-month="Jun" data-course-id="eficiencia-energética-para-las-industrias">
-                    <div class="schedule-date"><span class="day">10</span><span class="month">Jun</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Gestión</span>
-                        <h4>Eficiencia Energética para las Industrias</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-laptop-code"></i> Virtual Sincrónico</span>
-                            <span><i class="fa-solid fa-clock"></i> 6 horas</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm js-open-course" data-open-course="eficiencia-energética-para-las-industrias">Ver detalle</button>
-                        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Inscribirme</a>
-                    </div>
-                </article>
+        <!-- OCT placeholder -->
+        <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Oct">
+          <div class="schedule-date"><span class="day">--</span><span class="month">Oct</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Próximamente</span>
+            <h4>Estamos trabajando para traerte más contenido</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-calendar"></i> Octubre 2026</span>
+              <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
+            <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
+          </div>
+        </article>
 
-                <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Jul">
-                    <div class="schedule-date"><span class="day">--</span><span class="month">Jul</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Próximamente</span>
-                        <h4>Estamos trabajando para traerte más contenido</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-calendar"></i> Julio 2026</span>
-                            <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
-                        <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
-                    </div>
-                </article>
+        <!-- NOV placeholder -->
+        <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Nov">
+          <div class="schedule-date"><span class="day">--</span><span class="month">Nov</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Próximamente</span>
+            <h4>Estamos trabajando para traerte más contenido</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-calendar"></i> Noviembre 2026</span>
+              <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
+            <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
+          </div>
+        </article>
 
-                <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Ago">
-                    <div class="schedule-date"><span class="day">--</span><span class="month">Ago</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Próximamente</span>
-                        <h4>Estamos trabajando para traerte más contenido</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-calendar"></i> Agosto 2026</span>
-                            <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
-                        <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
-                    </div>
-                </article>
+        <!-- DIC placeholder -->
+        <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Dic">
+          <div class="schedule-date"><span class="day">--</span><span class="month">Dic</span></div>
+          <div class="schedule-info">
+            <span class="cat-tag">Próximamente</span>
+            <h4>Estamos trabajando para traerte más contenido</h4>
+            <div class="meta-grid">
+              <span><i class="fa-solid fa-calendar"></i> Diciembre 2026</span>
+              <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
+            </div>
+          </div>
+          <div class="schedule-action">
+            <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
+            <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
+          </div>
+        </article>
 
-                <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Sep">
-                    <div class="schedule-date"><span class="day">--</span><span class="month">Sep</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Próximamente</span>
-                        <h4>Estamos trabajando para traerte más contenido</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-calendar"></i> Septiembre 2026</span>
-                            <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
-                        <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
-                    </div>
-                </article>
-
-                <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Oct">
-                    <div class="schedule-date"><span class="day">--</span><span class="month">Oct</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Próximamente</span>
-                        <h4>Estamos trabajando para traerte más contenido</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-calendar"></i> Octubre 2026</span>
-                            <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
-                        <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
-                    </div>
-                </article>
-
-                <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Nov">
-                    <div class="schedule-date"><span class="day">--</span><span class="month">Nov</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Próximamente</span>
-                        <h4>Estamos trabajando para traerte más contenido</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-calendar"></i> Noviembre 2026</span>
-                            <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
-                        <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
-                    </div>
-                </article>
-
-                <article class="schedule-card schedule-card--placeholder" data-aos="fade-up" data-name="estamos trabajando para traerte mas contenido" data-month="Dic">
-                    <div class="schedule-date"><span class="day">--</span><span class="month">Dic</span></div>
-                    <div class="schedule-info">
-                        <span class="cat-tag">Próximamente</span>
-                        <h4>Estamos trabajando para traerte más contenido</h4>
-                        <div class="meta-grid">
-                            <span><i class="fa-solid fa-calendar"></i> Diciembre 2026</span>
-                            <span><i class="fa-solid fa-circle-info"></i> Actualizaremos este mes pronto</span>
-                        </div>
-                    </div>
-                    <div class="schedule-action">
-                        <button type="button" class="btn btn-secondary btn-sm" disabled aria-disabled="true">Ver detalle</button>
-                        <button type="button" class="btn btn-primary btn-sm" disabled aria-disabled="true">Inscribirme</button>
-                    </div>
-                </article>
-
-                <div id="noResults" class="no-results-container" style="display: none;">
-                    <div class="no-results-content">
-                        <img src="../assets/img/404.png" alt="No encontrado" class="no-results-img" 
-                            onerror="this.src='https://placehold.co/400x300/f8f9fa/FF5A72?text=Curso+no+encontrado'">
-                        <h3>¡Ups! No encontramos ese curso</h3>
-                        <p>Actualmente no tenemos programada esta formación, pero <strong>podemos diseñarla para ti o tu empresa.</strong></p>
-                        <a href="contacto.html" class="btn btn-primary">Solicitar información</a>
-                    </div>
-                </div>
-            </section>
+        <!-- No results -->
+        <div id="noResults" class="no-results-container" style="display:none;">
+          <div class="no-results-content">
+            <img src="../assets/img/404.png" alt="No encontrado" class="no-results-img"
+              onerror="this.src='https://placehold.co/400x300/f8f9fa/FF5A72?text=Curso+no+encontrado'" />
+            <h3>¡Ups! No encontramos ese curso</h3>
+            <p>Actualmente no tenemos programada esta formación, pero <strong>podemos diseñarla para ti o tu empresa.</strong></p>
+            <a href="contacto.html" class="btn btn-primary">Solicitar información</a>
+          </div>
         </div>
 
-        <!-- Modal: Detalle de curso -->
-        <div class="modal" id="courseModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="courseModalTitle">
-            <div class="modal__overlay" data-close="true"></div>
-            <div class="modal__dialog" role="document">
-                <button class="modal__close" type="button" aria-label="Cerrar modal" data-close="true">
-                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
-                </button>
+      </section>
+    </div>
 
-                <div class="modal__content">
-                    <span class="modal__tag" id="courseModalTag">Curso</span>
-                    <h3 id="courseModalTitle">Título</h3>
-                    <p class="modal__desc" id="courseModalDesc"></p>
+    <!-- Modal -->
+    <div class="modal" id="courseModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="courseModalTitle">
+      <div class="modal__overlay" data-close="true"></div>
+      <div class="modal__dialog" role="document">
+        <button class="modal__close" type="button" aria-label="Cerrar modal" data-close="true">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
 
-                    <div class="modal__meta" aria-label="Información del curso">
-                        <div class="modal__metaItem"><i class="fa-regular fa-calendar" aria-hidden="true"></i> <span id="courseModalDate"></span></div>
-                        <div class="modal__metaItem"><i class="fa-regular fa-clock" aria-hidden="true"></i> <span id="courseModalDuration"></span></div>
-                        <div class="modal__metaItem"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> <span id="courseModalModality"></span></div>
-                        <div class="modal__metaItem"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span id="courseModalInstructor"></span></div>
-                    </div>
+        <div class="modal__content">
+          <span class="modal__tag" id="courseModalTag">Curso</span>
+          <h3 id="courseModalTitle">Título</h3>
+          <p class="modal__desc" id="courseModalDesc"></p>
 
-                    <details class="modal__details">
-                        <summary>Ver público objetivo</summary>
-                        <p id="courseModalAudience"></p>
-                    </details>
+          <div class="modal__meta" aria-label="Información del curso">
+            <div class="modal__metaItem"><i class="fa-regular fa-calendar" aria-hidden="true"></i> <span id="courseModalDate"></span></div>
+            <div class="modal__metaItem"><i class="fa-regular fa-clock" aria-hidden="true"></i> <span id="courseModalDuration"></span></div>
+            <div class="modal__metaItem"><i class="fa-solid fa-laptop-code" aria-hidden="true"></i> <span id="courseModalModality"></span></div>
+            <div class="modal__metaItem"><i class="fa-regular fa-clock" aria-hidden="true"></i> <span id="courseModalSchedule">Horario por confirmar</span></div>
+            <div class="modal__metaItem"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> <span id="courseModalInstructor"></span></div>
+          </div>
 
-                    <div class="modal__actions">
-                        <a id="courseModalInfo" href="#" class="btn btn-primary" target="_blank" rel="noopener noreferrer" aria-label="Solicitar información por WhatsApp (se abre en una nueva pestaña)"> Solicitar información</a>
-                        <a id="courseModalCampus" href="https://capacita.cidet.org.co/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Inscribirme en el campus (se abre en una nueva pestaña)" > Inscribirme en el campus</a>
-                    </div>
+          <details class="modal__details">
+            <summary>Ver público objetivo</summary>
+            <p id="courseModalAudience"></p>
+          </details>
 
-                </div>
-            </div>
+          <div class="modal__actions">
+            <a id="courseModalInfo" href="#" class="btn btn-primary" target="_blank" rel="noopener noreferrer"
+              aria-label="Solicitar información por WhatsApp (se abre en una nueva pestaña)">Solicitar información</a>
+
+            <a id="courseModalCampus" href="https://capacita.cidet.org.co/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"
+              aria-label="Inscribirme en el campus (se abre en una nueva pestaña)">Inscribirme en el campus</a>
+          </div>
         </div>
+      </div>
+    </div>
 
-<script type="application/json" id="coursesData">[
-  {
-    "id": "retie-2024-cambios-reglamentarios-y-gestión-del-riesgo-eléct",
-    "title": "RETIE 2024: Cambios Reglamentarios y Gestión del Riesgo Eléctrico",
-    "category": "Normativa",
-    "day": "26",
-    "month": "Feb",
-    "duration": "24 horas",
-    "startDate": "26 de Febrero del 2026",
-    "schedule": "3:00.p.m. a 7:00.p.m",
-    "audience": "Este curso está dirigido a personal del sector eléctrico, entre ellos fabricantes, inspectores, auditores, consultores, técnicos, tecnólogos y profesionales del área, así como personal de Seguridad y Salud en el Trabajo (SST), que deseen fortalecer sus conocimientos sobre la aplicación del RETIE en el contexto actual. Asimismo, está orientado a quienes requieran identificar, prevenir, minimizar y gestionar los riesgos de origen eléctrico, conforme a los requisitos reglamentarios vigentes.",
-    "description": "Curso de 24 horas orientado a analizar y aplicar los requisitos vigentes del Reglamento Técnico de Instalaciones Eléctricas (RETIE), con énfasis en la gestión del riesgo eléctrico. Se revisan los cambios incorporados en la versión 2024 y sus implicaciones técnicas, con enfoque práctico para el cumplimiento en las diferentes etapas del ciclo de vida de una instalación (diseño, construcción, inspección y operación). El curso fortalece criterios para identificar, prevenir, minimizar y controlar riesgos de origen eléctrico, reduciendo no conformidades y mejorando la seguridad.",
-    "instructor": "Julio Bonilla y Felix Sandoval",
-    "modality": "Virtual Sincrónico",
-    "monthName": "Febrero"
-  },
-  {
-    "id": "reinducción-y-actualización-en-trabajos-con-tensión-basado-e",
-    "title": "Reinducción y actualización en trabajos con tensión basado en la resolución 5018 del 2019",
-    "category": "Seguridad",
-    "day": "03",
-    "month": "Mar",
-    "duration": "40 horas",
-    "startDate": "3 de marzo del 2026",
-    "schedule": "3:00.p.m. a 7:00.p.m",
-    "audience": "Este curso está dirigido a personal del sector eléctrico que ejecuta o supervisa trabajos con tensión, tales como ingenieros, técnicos, tecnólogos, linieros, supervisores, jefes de cuadrilla y contratistas, así como personal de Seguridad y Salud en el Trabajo (SST), inspectores y responsables de la gestión y control de este tipo de actividades, que requieran reinducción o actualización en los requisitos de seguridad y procedimientos establecidos en la Resolución 5018 de 2019.",
-    "description": "Este curso de 40 horas tiene como propósito realizar la reinducción y actualización en trabajos con tensión, conforme a los lineamientos y exigencias establecidos en la Resolución 5018 de 2019. El curso aborda los requisitos de seguridad aplicables a los trabajos con tensión, la identificación de peligros, la evaluación y control de riesgos, el uso adecuado de herramientas, equipos y elementos de protección personal, así como los procedimientos operativos seguros que deben implementarse para la ejecución de estas labores. Está orientado a reforzar los criterios técnicos y de seguridad necesarios para planificar, ejecutar y supervisar trabajos con tensión, garantizando la protección de los trabajadores y el cumplimiento de la regulación vigente.",
-    "instructor": "Jorge Ricardo Rodriguez",
-    "modality": "Virtual Sincrónico",
-    "monthName": "Marzo"
-  },
-  {
-    "id": "elaboración-procedimientos-trabajo-seguro-en-construcción-de-",
-    "title": "Elaboración Procedimientos Trabajo Seguro En Construcción de Líneas (Según Resolución 5018 de 2019).",
-    "category": "Seguridad",
-    "day": "18",
-    "month": "Mar",
-    "duration": "8 horas",
-    "startDate": "18 de marzo del 2026",
-    "schedule": "5:00.p.m. a 7:00.p.m",
-    "audience": "Este curso está dirigido a personal del sector eléctrico involucrado en la construcción de líneas, tales como ingenieros, técnicos, tecnólogos, supervisores de obra, jefes de cuadrilla, contratistas, así como personal de Seguridad y Salud en el Trabajo (SST), inspectores y responsables de la planeación y control de trabajos eléctricos, que requieran elaborar, implementar o verificar Procedimientos de Trabajo Seguro, de acuerdo con la Resolución 5018 de 2019.",
-    "description": "Este curso tiene como propósito orientar la elaboración de Procedimientos de Trabajo Seguro (PTS) aplicables a la construcción de líneas eléctricas, conforme a los lineamientos establecidos en la Resolución 5018 de 2019. A lo largo del curso se abordan los requisitos técnicos y de seguridad exigidos por la regulación, la identificación de peligros, la evaluación y control de riesgos, y la estructuración de procedimientos que permitan planificar, ejecutar y supervisar trabajos de manera segura, garantizando el cumplimiento normativo y la protección del personal involucrado en actividades en líneas eléctricas.",
-    "instructor": "Jorge Ricardo Rodriguez",
-    "modality": "Virtual Sincrónico",
-    "monthName": "Marzo"
-  },
-  {
-    "id": "curso-de-profundización-en-criterios-técnicos-para-el-diseño",
-    "title": "Curso de profundización en criterios técnicos para el diseño de tableros eléctricos – RETIE 2024",
-    "category": "Infraestructura",
-    "day": "07",
-    "month": "Abr",
-    "duration": "44 horas",
-    "startDate": "7 de abril del 2026",
-    "schedule": "3:00.p.m. a 7:00.p.m",
-    "audience": "Este curso está dirigido a ingenieros electricistas, ingenieros electrónicos, diseñadores eléctricos, proyectistas, consultores, inspectores, auditores y revisores de diseños, así como a técnicos y tecnólogos con experiencia en diseño y montaje de tableros eléctricos, que requieran profundizar en los criterios técnicos del RETIE 2024 para el diseño, revisión, verificación y cumplimiento de tableros eléctricos en instalaciones de uso residencial, comercial e industrial.",
-    "description": "Este curso de profundización tiene como propósito fortalecer los criterios técnicos exigidos por el RETIE 2024 para el diseño de tableros eléctricos, mediante la aplicación de los cálculos eléctricos que garantizan la seguridad, confiabilidad y cumplimiento reglamentario de las instalaciones. El curso aborda el cálculo de cortocircuito, la selección de la capacidad de interrupción de los dispositivos de protección, la coordinación y selectividad de protecciones, el cálculo de caída de tensión, el dimensionamiento de conductores, la capacidad de corriente de barras y equipos, así como criterios de coordinación del aislamiento, protección contra sobretensiones, protección diferencial, puesta a tierra y ventilación de tableros, conforme al RETIE y la NTC 2050, permitiendo verificar y sustentar técnicamente los diseños en el marco de la regulación vigente.",
-    "instructor": "Julio Bonilla",
-    "modality": "Virtual Sincrónico",
-    "monthName": "Abril"
-  },
-  {
-    "id": "elaboración-procedimientos-trabajo-seguro-en-mantenimiento-de",
-    "title": "Elaboración Procedimientos Trabajo Seguro En Mantenimiento de Líneas (Según Resolución 5018 de 2019).",
-    "category": "Seguridad",
-    "day": "27",
-    "month": "Abr",
-    "duration": "8 horas",
-    "startDate": "27 de abril del 2026",
-    "schedule": "3:00.p.m. a 7:00.p.m",
-    "audience": "Este curso está dirigido a personal del sector eléctrico involucrado en actividades de mantenimiento de líneas, tales como ingenieros, técnicos, tecnólogos, supervisores, jefes de cuadrilla y contratistas, así como personal de Seguridad y Salud en el Trabajo (SST), inspectores y responsables de la planeación, ejecución y control de trabajos en líneas eléctricas, que requieran elaborar, implementar o verificar Procedimientos de Trabajo Seguro, conforme a lo establecido en la Resolución 5018 de 2019.",
-    "description": "Este curso tiene como propósito orientar la elaboración de Procedimientos de Trabajo Seguro (PTS) aplicables al mantenimiento de líneas eléctricas, conforme a los lineamientos establecidos en la Resolución 5018 de 2019. A lo largo del curso se abordan los requisitos de seguridad exigidos por la regulación, la identificación de peligros asociados a las actividades de mantenimiento, la evaluación y control de riesgos, y la estructuración de procedimientos que permitan planificar, ejecutar y supervisar trabajos de mantenimiento de manera segura, garantizando el cumplimiento reglamentario y la protección del personal involucrado.",
-    "instructor": "Por confirmar",
-    "modality": "Virtual Sincrónico",
-    "monthName": "Abril"
-  },
-  {
-    "id": "gestión-regulatoria-para-el-comisionamiento-y-puesta-en-marcha",
-    "title": "Gestión Regulatoria para el Comisionamiento y Puesta en Marcha de Pequeñas Centrales Hidroeléctricas (PCH)",
-    "category": "Energía",
-    "day": "04",
-    "month": "May",
-    "duration": "12 horas",
-    "startDate": "4 de mayo del 2026",
-    "schedule": "6:00.p.m. a 8:00.p.m",
-    "audience": "Este curso está dirigido a ingenieros electricistas, ingenieros electrónicos, ingenieros mecánicos y civiles, así como a desarrolladores de proyectos, consultores, interventores, operadores, responsables técnicos y personal de empresas generadoras, involucrados en el diseño, desarrollo, registro, conexión, comisionamiento y puesta en marcha de Pequeñas Centrales Hidroeléctricas (PCH), que requieran comprender y gestionar los requisitos regulatorios y técnicos asociados a este tipo de proyectos en el marco del sistema eléctrico colombiano.",
-    "description": "Este curso tiene como propósito abordar la gestión regulatoria requerida para el comisionamiento y la puesta en marcha de Pequeñas Centrales Hidroeléctricas (PCH), mediante el análisis de los trámites, registros y requisitos técnicos exigidos por las entidades del sector eléctrico colombiano. A lo largo del curso se revisan los aspectos fundamentales del desarrollo de proyectos PCH, el registro ante la UPME en sus diferentes fases, los requisitos de conexión al sistema eléctrico, la definición y verificación de la frontera comercial, la presentación de proyectos eléctricos de generación, la aplicación del RETIE en proyectos de generación y los lineamientos para el comisionamiento y puesta en marcha, conforme a la regulación vigente expedida por la UPME, la CREG, el CNO y demás entidades competentes.",
-    "instructor": "Juan David Velasquez",
-    "modality": "Virtual Sincrónico",
-    "monthName": "Mayo"
-  },
-  {
-    "id": "eficiencia-energética-para-las-industrias",
-    "title": "Eficiencia Energética para las Industrias",
-    "category": "Gestión",
-    "day": "10",
-    "month": "Jun",
-    "duration": "6 horas",
-    "startDate": "10 de junio del 2026",
-    "schedule": "5:00.p.m. a 7:00.p.m",
-    "audience": "Este curso está dirigido a ingenieros, técnicos, tecnólogos y profesionales del sector industrial, así como a responsables de mantenimiento, producción, energía y sostenibilidad, consultores y personal de gestión energética, que requieran identificar, implementar o evaluar medidas de eficiencia energética en procesos, equipos e instalaciones industriales.",
-    "description": "Este curso tiene como propósito abordar los principios, estrategias y medidas de eficiencia energética aplicables a entornos industriales, orientadas a la optimización del consumo de energía, la reducción de costos operativos y la mejora del desempeño energético de los procesos productivos. A lo largo del curso se analizan oportunidades de ahorro energético, el uso eficiente de equipos y sistemas eléctricos, la gestión de la demanda, el monitoreo y control del consumo y la implementación de buenas prácticas energéticas, contribuyendo a una operación industrial más sostenible y competitiva.",
-    "instructor": "David Velasquez",
-    "modality": "Virtual Sincrónico",
-    "monthName": "Junio"
-  }
-]</script>
-    </main>
+    <!-- JSON -->
+    <script type="application/json" id="coursesData">[
+      {
+        "id": "retie-2024-cambios-reglamentarios-y-gestión-del-riesgo-eléct",
+        "title": "RETIE 2024: Cambios Reglamentarios y Gestión del Riesgo Eléctrico",
+        "category": "Normativa",
+        "day": "26",
+        "month": "Feb",
+        "duration": "24 horas",
+        "startDate": "26 de Febrero del 2026",
+        "schedule": "3:00.p.m. a 7:00.p.m",
+        "audience": "Este curso está dirigido a personal del sector eléctrico, entre ellos fabricantes, inspectores, auditores, consultores, técnicos, tecnólogos y profesionales del área, así como personal de Seguridad y Salud en el Trabajo (SST), que deseen fortalecer sus conocimientos sobre la aplicación del RETIE en el contexto actual. Asimismo, está orientado a quienes requieran identificar, prevenir, minimizar y gestionar los riesgos de origen eléctrico, conforme a los requisitos reglamentarios vigentes.",
+        "description": "Curso de 24 horas orientado a analizar y aplicar los requisitos vigentes del Reglamento Técnico de Instalaciones Eléctricas (RETIE), con énfasis en la gestión del riesgo eléctrico. Se revisan los cambios incorporados en la versión 2024 y sus implicaciones técnicas, con enfoque práctico para el cumplimiento en las diferentes etapas del ciclo de vida de una instalación (diseño, construcción, inspección y operación). El curso fortalece criterios para identificar, prevenir, minimizar y controlar riesgos de origen eléctrico, reduciendo no conformidades y mejorando la seguridad.",
+        "instructor": "Julio Bonilla y Felix Sandoval",
+        "modality": "Virtual Sincrónico",
+        "monthName": "Febrero"
+      },
+      {
+        "id": "reinducción-y-actualización-en-trabajos-con-tensión-basado-e",
+        "title": "Reinducción y actualización en trabajos con tensión basado en la resolución 5018 del 2019",
+        "category": "Seguridad",
+        "day": "03",
+        "month": "Mar",
+        "duration": "40 horas",
+        "startDate": "3 de marzo del 2026",
+        "schedule": "3:00.p.m. a 7:00.p.m",
+        "audience": "Este curso está dirigido a personal del sector eléctrico que ejecuta o supervisa trabajos con tensión, tales como ingenieros, técnicos, tecnólogos, linieros, supervisores, jefes de cuadrilla y contratistas, así como personal de Seguridad y Salud en el Trabajo (SST), inspectores y responsables de la gestión y control de este tipo de actividades, que requieran reinducción o actualización en los requisitos de seguridad y procedimientos establecidos en la Resolución 5018 de 2019.",
+        "description": "Este curso de 40 horas tiene como propósito realizar la reinducción y actualización en trabajos con tensión, conforme a los lineamientos y exigencias establecidos en la Resolución 5018 de 2019. El curso aborda los requisitos de seguridad aplicables a los trabajos con tensión, la identificación de peligros, la evaluación y control de riesgos, el uso adecuado de herramientas, equipos y elementos de protección personal, así como los procedimientos operativos seguros que deben implementarse para la ejecución de estas labores. Está orientado a reforzar los criterios técnicos y de seguridad necesarios para planificar, ejecutar y supervisar trabajos con tensión, garantizando la protección de los trabajadores y el cumplimiento de la regulación vigente.",
+        "instructor": "Jorge Ricardo Rodriguez",
+        "modality": "Virtual Sincrónico",
+        "monthName": "Marzo"
+      },
+      {
+        "id": "curso-trinorma-iso-",
+        "title": "Curso Trinorma (ISO 9001, 14001 y 45001)",
+        "category": "NTC ISO",
+        "day": "18",
+        "month": "Mar",
+        "duration": "24 horas",
+        "startDate": "18 de marzo del 2026",
+        "schedule": "3:00.p.m. a 7:00.p.m",
+        "audience": "Este curso está dirigido a: Auditores internos de ISO 9001, 14001 o 45001 que requieran auditar sistemas integrados, líderes y responsables del SIG / HSEQ, profesionales de calidad, ambiente, SST, riesgos y cumplimiento, consultores en sistemas de gestión y/o jefes de proceso que participan en auditorías internas.",
+        "description": "Curso orientado al desarrollo de habilidades para planificar, ejecutar y reportar auditorías internas integradas, conforme a ISO 19011, aplicando la estructura de alto nivel (Anexo SL) de las normas ISO 9001, ISO 14001 e ISO 45001. El programa aborda requisitos transversales, particularidades de cada norma y habilidades prácticas de auditoría.",
+        "instructor": "Diana Carolina Viana",
+        "modality": "Virtual Sincrónico",
+        "monthName": "Marzo"
+      },
+      {
+        "id": "curso-de-profundización-en-criterios-técnicos-para-el-diseño",
+        "title": "Curso de profundización en criterios técnicos para el diseño de tableros eléctricos | RETIE 2024",
+        "category": "Infraestructura",
+        "day": "07",
+        "month": "Abr",
+        "duration": "44 horas",
+        "startDate": "7 de abril del 2026",
+        "schedule": "3:00.p.m. a 7:00.p.m",
+        "audience": "Este curso está dirigido a ingenieros electricistas, ingenieros electrónicos, diseñadores eléctricos, proyectistas, consultores, inspectores, auditores y revisores de diseños, así como a técnicos y tecnólogos con experiencia en diseño y montaje de tableros eléctricos, que requieran profundizar en los criterios técnicos del RETIE 2024 para el diseño, revisión, verificación y cumplimiento de tableros eléctricos en instalaciones de uso residencial, comercial e industrial.",
+        "description": "Este curso de profundización tiene como propósito fortalecer los criterios técnicos exigidos por el RETIE 2024 para el diseño de tableros eléctricos, mediante la aplicación de los cálculos eléctricos que garantizan la seguridad, confiabilidad y cumplimiento reglamentario de las instalaciones. El curso aborda el cálculo de cortocircuito, la selección de la capacidad de interrupción de los dispositivos de protección, la coordinación y selectividad de protecciones, el cálculo de caída de tensión, el dimensionamiento de conductores, la capacidad de corriente de barras y equipos, así como criterios de coordinación del aislamiento, protección contra sobretensiones, protección diferencial, puesta a tierra y ventilación de tableros, conforme al RETIE y la NTC 2050, permitiendo verificar y sustentar técnicamente los diseños en el marco de la regulación vigente.",
+        "instructor": "Julio Bonilla",
+        "modality": "Virtual Sincrónico",
+        "monthName": "Abril"
+      },
+      {
+        "id": "elaboración-procedimientos-trabajo-seguro-en-construcción-de-",
+        "title": "Elaboración Procedimientos Trabajo Seguro En Construcción de Líneas (Según Resolución 5018 de 2019).",
+        "category": "Seguridad",
+        "day": "27",
+        "month": "Abr",
+        "duration": "8 horas",
+        "startDate": "27 de abril del 2026",
+        "schedule": "5:00.p.m. a 7:00.p.m",
+        "audience": "Este curso está dirigido a personal del sector eléctrico involucrado en la construcción de líneas, tales como ingenieros, técnicos, tecnólogos, supervisores de obra, jefes de cuadrilla, contratistas, así como personal de Seguridad y Salud en el Trabajo (SST), inspectores y responsables de la planeación y control de trabajos eléctricos, que requieran elaborar, implementar o verificar Procedimientos de Trabajo Seguro, de acuerdo con la Resolución 5018 de 2019.",
+        "description": "Este curso tiene como propósito orientar la elaboración de Procedimientos de Trabajo Seguro (PTS) aplicables a la construcción de líneas eléctricas, conforme a los lineamientos establecidos en la Resolución 5018 de 2019. A lo largo del curso se abordan los requisitos técnicos y de seguridad exigidos por la regulación, la identificación de peligros, la evaluación y control de riesgos, y la estructuración de procedimientos que permitan planificar, ejecutar y supervisar trabajos de manera segura, garantizando el cumplimiento normativo y la protección del personal involucrado en actividades en líneas eléctricas.",
+        "instructor": "Jorge Ricardo Rodriguez",
+        "modality": "Virtual Sincrónico",
+        "monthName": "Abril"
+      },
+      {
+        "id": "gestión-regulatoria-para-el-comisionamiento-y-puesta-en-marcha",
+        "title": "Gestión Regulatoria para el Comisionamiento y Puesta en Marcha de Pequeñas Centrales Hidroeléctricas (PCH)",
+        "category": "Energía",
+        "day": "04",
+        "month": "May",
+        "duration": "12 horas",
+        "startDate": "4 de mayo del 2026",
+        "schedule": "6:00.p.m. a 8:00.p.m",
+        "audience": "Este curso está dirigido a ingenieros electricistas, ingenieros electrónicos, ingenieros mecánicos y civiles, así como a desarrolladores de proyectos, consultores, interventores, operadores, responsables técnicos y personal de empresas generadoras, involucrados en el diseño, desarrollo, registro, conexión, comisionamiento y puesta en marcha de Pequeñas Centrales Hidroeléctricas (PCH), que requieran comprender y gestionar los requisitos regulatorios y técnicos asociados a este tipo de proyectos en el marco del sistema eléctrico colombiano.",
+        "description": "Este curso tiene como propósito abordar la gestión regulatoria requerida para el comisionamiento y la puesta en marcha de Pequeñas Centrales Hidroeléctricas (PCH), mediante el análisis de los trámites, registros y requisitos técnicos exigidos por las entidades del sector eléctrico colombiano. A lo largo del curso se revisan los aspectos fundamentales del desarrollo de proyectos PCH, el registro ante la UPME en sus diferentes fases, los requisitos de conexión al sistema eléctrico, la definición y verificación de la frontera comercial, la presentación de proyectos eléctricos de generación, la aplicación del RETIE en proyectos de generación y los lineamientos para el comisionamiento y puesta en marcha, conforme a la regulación vigente expedida por la UPME, la CREG, el CNO y demás entidades competentes.",
+        "instructor": "Juan David Velasquez",
+        "modality": "Virtual Sincrónico",
+        "monthName": "Mayo"
+      },
+      {
+        "id": "elaboración-procedimientos-trabajo-",
+        "title": "Elaboración Procedimientos Trabajo Seguro En Mantenimiento de Líneas (Según Resolución 5018 de 2019).",
+        "category": "Seguridad",
+        "day": "19",
+        "month": "May",
+        "duration": "8 horas",
+        "startDate": "19 de mayo del 2026",
+        "schedule": "3:00.p.m. a 7:00.p.m",
+        "audience": "Este curso está dirigido a personal del sector eléctrico involucrado en actividades de mantenimiento de líneas, tales como ingenieros, técnicos, tecnólogos, supervisores, jefes de cuadrilla y contratistas, así como personal de Seguridad y Salud en el Trabajo (SST), inspectores y responsables de la planeación, ejecución y control de trabajos en líneas eléctricas, que requieran elaborar, implementar o verificar Procedimientos de Trabajo Seguro, conforme a lo establecido en la Resolución 5018 de 2019.",
+        "description": "Este curso tiene como propósito orientar la elaboración de Procedimientos de Trabajo Seguro (PTS) aplicables al mantenimiento de líneas eléctricas, conforme a los lineamientos establecidos en la Resolución 5018 de 2019. A lo largo del curso se abordan los requisitos de seguridad exigidos por la regulación, la identificación de peligros asociados a las actividades de mantenimiento, la evaluación y control de riesgos, y la estructuración de procedimientos que permitan planificar, ejecutar y supervisar trabajos de mantenimiento de manera segura, garantizando el cumplimiento reglamentario y la protección del personal involucrado.",
+        "instructor": "Jorge Ricardo Rodriguez",
+        "modality": "Virtual Sincrónico",
+        "monthName": "Mayo"
+      },
+      {
+        "id": "eficiencia-energética-para-las-industrias",
+        "title": "Eficiencia Energética para las Industrias",
+        "category": "Gestión",
+        "day": "10",
+        "month": "Jun",
+        "duration": "6 horas",
+        "startDate": "10 de junio del 2026",
+        "schedule": "5:00.p.m. a 7:00.p.m",
+        "audience": "Este curso está dirigido a ingenieros, técnicos, tecnólogos y profesionales del sector industrial, así como a responsables de mantenimiento, producción, energía y sostenibilidad, consultores y personal de gestión energética, que requieran identificar, implementar o evaluar medidas de eficiencia energética en procesos, equipos e instalaciones industriales.",
+        "description": "Este curso tiene como propósito abordar los principios, estrategias y medidas de eficiencia energética aplicables a entornos industriales, orientadas a la optimización del consumo de energía, la reducción de costos operativos y la mejora del desempeño energético de los procesos productivos. A lo largo del curso se analizan oportunidades de ahorro energético, el uso eficiente de equipos y sistemas eléctricos, la gestión de la demanda, el monitoreo y control del consumo y la implementación de buenas prácticas energéticas, contribuyendo a una operación industrial más sostenible y competitiva.",
+        "instructor": "David Velasquez",
+        "modality": "Virtual Sincrónico",
+        "monthName": "Junio"
+      }
+    ]</script>
 
-    <footer class="main-footer">
+  </main>
+
+  <footer class="main-footer">
     <div class="container footer-grid">
-        
-        <div class="footer-col brand-col">
-            <img src="/assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto"></a>
-            <p>Formación profesional y consultoría experta para potenciar tu futuro.</p>
-            
-            <div class="footer-info">
-                <i class="fa-regular fa-envelope"></i>
-                <div>
-                    <span>Hable con nosotros</span>
-                    <a href="mailto:capacitacion@cidet.org.co">cidet@ejemplo.com</a>
-                </div>
-            </div>
-        </div>
+      <div class="footer-col brand-col">
+        <img src="/assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto" />
+        <p>Formación profesional y consultoría experta para potenciar tu futuro.</p>
 
-        <div class="footer-col links-col">
-            <h4>De tu interés</h4>
-            <ul>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./cursos.html">Cursos Recientes</a></li>
-            </ul>
+        <div class="footer-info">
+          <i class="fa-regular fa-envelope"></i>
+          <div>
+            <span>Hable con nosotros</span>
+            <a href="mailto:capacitacion@cidet.org.co">capacitacion@cidet.org.co</a>
+          </div>
         </div>
+      </div>
 
-        <div class="footer-col links-col">
-            <h4>Sobre</h4>
-            <ul>
-                <li><a href="https://cidet.org.co/nosotros/">Acerca de CIDET</a></li>
-                <li><a href="pages/empresas.html">Para Empresas</a></li>
-            </ul>
-        </div>
+      <div class="footer-col links-col">
+        <h4>De tu interés</h4>
+        <ul>
+          <li><a href="./blog.html">Blog</a></li>
+          <li><a href="./cursos.html">Cursos Recientes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col links-col">
+        <h4>Sobre</h4>
+        <ul>
+          <li><a href="https://cidet.org.co/nosotros/">Acerca de CIDET</a></li>
+          <li><a href="empresas.html">Para Empresas</a></li>
+        </ul>
+      </div>
     </div>
-    
+
     <div class="container footer-bottom">
-        <div class="socials-icons">
-            <a href="https://www.instagram.com/cidet_org/" aria-label="Instagram" target="_blank" class="social-icon instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/CIDETColombia?_rdc=1&_rdr#" aria-label="Facebook" target="_blank" class="social-icon facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/@CIDET_ORG" aria-label="Youtube" target="_blank" class="social-icon youtube">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/cidet-corporaci-n-centro-de-investigaci-n-y-desarrollo-tecnol-gico-del-sector-el-ctrico/" aria-label="LinkedIn" target="_blank" class="social-icon linkedin">
-                <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-        </div>
-        <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados.</p>
+      <div class="socials-icons">
+        <a href="https://www.instagram.com/cidet_org/" aria-label="Instagram" target="_blank" class="social-icon instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.facebook.com/CIDETColombia?_rdc=1&_rdr#" aria-label="Facebook" target="_blank" class="social-icon facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://www.youtube.com/@CIDET_ORG" aria-label="Youtube" target="_blank" class="social-icon youtube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/cidet-corporaci-n-centro-de-investigaci-n-y-desarrollo-tecnol-gico-del-sector-el-ctrico/" aria-label="LinkedIn" target="_blank" class="social-icon linkedin">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+      </div>
+      <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados.</p>
     </div>
-</footer>
+  </footer>
 
-    <script src="../js/main.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
-    </script>
+  <script src="../js/main.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
 </body>
 </html>
