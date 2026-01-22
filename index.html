@@ -1,307 +1,522 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CIDET - Formación profesional y capacitación para empresas.">
-    <title>CIDET | Inicio</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="/assets/FaviconC.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIDET Capacita | Inicio</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-    <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <link rel="icon" href="/assets/FaviconC.png" />
+  <link rel="stylesheet" href="css/main.css" />
 </head>
+
 <body>
-
-    <header class="main-header">
+  <header class="main-header">
     <div class="container header-content">
-        <a href="index.html" aria-label="Ir al inicio">
-        <img src="assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto">
-        </a>
+      <a href="index.html" aria-label="Ir al inicio">
+        <img src="assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto" />
+      </a>
 
-        <nav class="main-nav" aria-label="Navegación principal">
+      <nav class="main-nav" aria-label="Navegación principal">
         <ul class="nav-list">
-            <li><a class="active" aria-current="page" href="index.html">Inicio</a></li>
-            <li><a href="pages/cursos.html">Cursos</a></li>
-            <li><a href="pages/cronograma.html">Cronograma</a></li>
-            <li><a href="pages/blog.html">Blog</a></li>
-            <li><a href="pages/empresas.html">Empresas</a></li>
-            <li><a href="pages/contacto.html">Contacto</a></li>
+          <li><a class="active" aria-current="page" href="index.html">Inicio</a></li>
+          <li><a href="pages/cursos.html">Cursos</a></li>
+          <li><a href="pages/cronograma.html">Cronograma</a></li>
+          <li><a href="pages/blog.html">Blog</a></li>
+          <li><a href="pages/empresas.html">Empresas</a></li>
+          <li><a href="pages/contacto.html">Contacto</a></li>
         </ul>
-        </nav>
+      </nav>
 
-        <div class="header-actions">
-        <a href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer" class="btn-campus">
-            <i class="fa-solid fa-user-graduate"></i> Campus
+      <div class="header-actions">
+        <a
+          href="https://capacita.cidet.org.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-campus"
+          aria-label="Abrir el campus virtual de CIDET Capacita (se abre en una nueva pestaña)"
+        >
+          <i class="fa-solid fa-user-graduate" aria-hidden="true"></i> Campus
         </a>
+
         <button class="menu-toggle" aria-expanded="false" aria-label="Abrir menú">
-            <span class="hamburger"></span>
+          <span class="hamburger"></span>
         </button>
-        </div>
+      </div>
     </div>
-    </header>
+  </header>
 
-    <main id="main-content">
-        
-        <section class="hero" style="position: relative; overflow: hidden;">
-    <div id="particles-js" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1;"></div>
+  <main>
+    <!-- ==========================================
+         HERO (NO ELIMINAR)
+    =========================================== -->
+    <section class="hero">
+      <div id="particles-js" aria-hidden="true"></div>
 
-    <div class="container hero-grid" style="position: relative; z-index: 2;">
+      <div class="container hero-grid">
         <div class="hero-text" data-aos="fade-right">
-            <span class="badge">Nuevo ciclo 2026</span>
-            <h1>Impulsa tu carrera profesional con <span class="highlight">CIDET</span></h1>
-            <p>Accede a cursos prácticos, mentoría experta y certificaciones que transforman tu futuro laboral.</p>
-            
-            <div class="hero-buttons">
-                <a href="pages/cursos.html" class="btn btn-primary">Explorar Cursos</a>
-                <a href="#mas-info" class="btn btn-secondary">Más Información</a>
-            </div>
+          <span class="badge">Formación virtual sincrónica</span>
 
-            <div class="hero-trust">
-                <i class="fa-solid fa-check-circle"></i> +15k Alumnos certificados
+          <h1>
+            Capacítate con <span class="highlight">respaldo CIDET</span> y marca diferencia en el sector eléctrico
+          </h1>
+
+          <p>
+            Programas técnicos, normativos y de seguridad para personas y empresas. Sincrónicos y asincrónicos, con expertos,
+            y con enfoque práctico para tu día a día.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="pages/cronograma.html">Ver cronograma 2026</a>
+            <a class="btn btn-secondary" href="pages/cursos.html">Explorar cursos</a>
+          </div>
+
+          <div class="hero-kpis" aria-label="Indicadores destacados">
+            <div class="kpi">
+              <strong>Expertos</strong>
+              <span>con experiencia real</span>
             </div>
+            <div class="kpi">
+              <strong>En vivo</strong>
+              <span>virtual sincrónico</span>
+            </div>
+            <div class="kpi">
+              <strong>Enfoque</strong>
+              <span>técnico + aplicable</span>
+            </div>
+          </div>
         </div>
 
-        <div class="hero-image" data-aos="zoom-in">
-            <img src="assets/img/hero1.png" alt="Estudiante CIDET" onerror="this.src='https://placehold.co/600x400/1D2128/FFFFFF?text=Imagen+Hero'"> 
+        <div class="hero-image" data-aos="fade-left">
+          <img
+            src="./assets/img/hero2.png"
+            alt="Profesionales en formación técnica"
+            onerror="this.src='https://placehold.co/640x480/f8f9fa/FF5A72?text=CIDET+Capacita'"
+            loading="lazy"
+          />
         </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         HOME CONTENT (3 columnas)
+    =========================================== -->
+    <div class="container layout-3-cols">
+
+      <!-- Sidebar izquierda (MAILING: NO ELIMINAR) -->
+        <!-- Sidebar izquierda (MAILING: NO ELIMINAR) -->
+      <aside class="col-sidebar2">
+        <div class="promo-item" data-aos="zoom-in">
+          <div class="promo-link" aria-label="Promo del mes CIDET Capacita">
+            <div class="promo-image-wrapper" aria-hidden="true">
+              <img
+                src="assets/img/mailing.png"
+                alt=""
+                onerror="this.src='https://placehold.co/420x280/03D0FF/1D2128?text=Promo+CIDET+Capacita'"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="promo-content">
+              <a
+                class="btn-cta"
+                href="https://wa.me/573216365761?text=Hola%20CIDET%20Capacita%20%F0%9F%91%8B%20Estoy%20interesado(a)%20en%20la%20promo%20del%20mes%20que%20vi%20en%20la%20plataforma.%20%C2%BFMe%20pueden%20compartir%20informaci%C3%B3n%20(precio%2C%20fechas%20y%20c%C3%B3mo%20inscribirme)%3F%20Gracias."
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Hablar por WhatsApp sobre la promo del mes (se abre en una nueva pestaña)"
+              >
+                Hablar con un asesor <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Columna principal -->
+      <section class="col-main">
+        <!-- Banda destacada (ABRE MODAL) -->
+        <article class="banner-slide" data-aos="fade-up">
+          <div class="banner-content">
+            <span class="badge-new">Novedad</span>
+            <h2>Membresías CIDET Capacita</h2>
+            <p>
+              Acceso a formaciones seleccionadas durante 6 o 12 meses. Ideal para equipos que necesitan
+              entrenarse de forma continua (sin “cazar cursos” cada mes).
+            </p>
+
+            <button
+              type="button"
+              class="btn-banner js-open-memberships"
+              aria-haspopup="dialog"
+              aria-controls="membershipsModal"
+            >
+              Ver opciones
+            </button>
+          </div>
+
+          <div class="banner-img" aria-hidden="true">
+            <img
+              src="./assets/img/estudiante.png"
+              alt=""
+              onerror="this.src='https://placehold.co/220x220/FF5A72/ffffff?text=Membres%C3%ADas'"
+              loading="lazy"
+            />
+          </div>
+        </article>
+
+        <!-- Bloque de bienvenida -->
+        <article class="content-block" data-aos="fade-up">
+          <h2>Formación que se nota en el trabajo (no solo en el diploma)</h2>
+          <p>
+            En CIDET Capacita diseñamos formaciones con foco en aplicación real: normativa, seguridad, infraestructura y gestión.
+            Aprendes lo esencial, lo practicas, lo conversas con expertos… y sales con claridad para implementar.
+          </p>
+
+          <div class="stats-container" aria-label="Ventajas principales">
+            <div class="stat-card">
+              <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+              <strong>Enfoque técnico</strong>
+              <span>contenidos aplicables</span>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+              <strong>Expertos</strong>
+              <span>experiencia sectorial</span>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-video" aria-hidden="true"></i>
+              <strong>En vivo</strong>
+              <span>virtual sincrónico</span>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+              <strong>Certificación</strong>
+              <span>soporte de aprendizaje</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Por qué CIDET -->
+        <section class="why-cidet" data-aos="fade-up">
+          <h3>¿Por qué entrenarte con CIDET Capacita?</h3>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+              <h4>Aprendizaje por casos</h4>
+              <p>Menos “teoría eterna”, más escenarios reales, criterios y decisiones que sí se usan.</p>
+            </article>
+
+            <article class="feature-card">
+              <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
+              <h4>Normativa clara</h4>
+              <p>Te ayudamos a entender el “qué”, el “por qué” y el “cómo” del cumplimiento.</p>
+            </article>
+
+            <article class="feature-card">
+              <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+              <h4>Para personas y empresas</h4>
+              <p>Desde formación individual hasta planes para equipos (con objetivos por rol).</p>
+            </article>
+
+            <article class="feature-card">
+              <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+              <h4>Acompañamiento</h4>
+              <p>Soporte y guía: te llevas un plan de acción, no solo apuntes bonitos.</p>
+            </article>
+          </div>
+
+          <div class="cta-strip">
+            <p><strong>¿Buscas una capacitación a la medida?</strong> La diseñamos para tu operación, tus riesgos y tu contexto.</p>
+            <a class="btn btn-secondary" href="pages/contacto.html">Hablemos</a>
+          </div>
+        </section>
+
+        <!-- Sección membresías (se mantiene) -->
+        <section class="section-membresias" data-aos="fade-up">
+          <div class="membresia-card">
+            <div class="membresia-info">
+              <i class="fa-solid fa-crown" aria-hidden="true"></i>
+              <div>
+                <h3>Membresías para equipos</h3>
+                <p>
+                  Ideal si necesitas entrenar personal de forma continua: programamos, haces seguimiento y tu operación gana consistencia.
+                </p>
+              </div>
+            </div>
+            <a class="btn-membresia" href="pages/empresas.html">Conocer beneficios</a>
+          </div>
+        </section>
+
+        <!-- Categorías / rutas -->
+        <section class="cat-group" data-aos="fade-up">
+          <h3><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Rutas de aprendizaje</h3>
+
+          <div class="cursos-grid">
+            <article class="curso-mini-card premium">
+              <span class="tag">Normativa</span>
+              <h4>RETIE / cumplimiento</h4>
+              <p>Interpretación práctica, cambios, implicaciones y verificación.</p>
+              <a href="pages/cronograma.html" class="btn-text">Ver fechas →</a>
+            </article>
+
+            <article class="curso-mini-card standar">
+              <span class="tag">Seguridad</span>
+              <h4>Trabajo seguro</h4>
+              <p>Procedimientos, control del riesgo y entrenamiento aplicado.</p>
+              <a href="pages/cronograma.html" class="btn-text">Ver fechas →</a>
+            </article>
+
+            <article class="curso-mini-card diplomado">
+              <span class="tag">Infraestructura</span>
+              <h4>Diseño y tableros</h4>
+              <p>Criterios técnicos, protecciones, selectividad y buenas prácticas.</p>
+              <a href="pages/cronograma.html" class="btn-text">Ver fechas →</a>
+            </article>
+
+            <article class="curso-mini-card standar">
+              <span class="tag">Gestión</span>
+              <h4>Eficiencia energética</h4>
+              <p>Medidas, oportunidades, ahorro y sostenibilidad en industria.</p>
+              <a href="pages/cronograma.html" class="btn-text">Ver fechas →</a>
+            </article>
+          </div>
+        </section>
+
+        <!-- Impacto -->
+        <section class="impacto-section" data-aos="fade-up">
+          <h3>Impacto que buscamos en tu operación</h3>
+
+          <div class="impacto-item">
+            <div class="check-icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+            <div>
+              <h4>Menos riesgos y no conformidades</h4>
+              <p>Criterios claros para decisiones técnicas y cumplimiento normativo.</p>
+            </div>
+          </div>
+
+          <div class="impacto-item">
+            <div class="check-icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+            <div>
+              <h4>Mejores prácticas de seguridad</h4>
+              <p>Procedimientos, control del riesgo y cultura operativa.</p>
+            </div>
+          </div>
+
+          <div class="impacto-item">
+            <div class="check-icon"><i class="fa-solid fa-check" aria-hidden="true"></i></div>
+            <div>
+              <h4>Equipos más autónomos</h4>
+              <p>Formación para ejecutar con criterio, sin depender de “a ver qué dicen”.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="col-sidebar">
+        <h3>Accesos rápidos</h3>
+
+        <div class="sidebar-links" aria-label="Enlaces rápidos">
+          <a href="pages/cronograma.html"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i> Cronograma 2026</a>
+          <a href="pages/cursos.html"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Catálogo de cursos</a>
+          <a href="pages/empresas.html"><i class="fa-solid fa-building" aria-hidden="true"></i> Para empresas</a>
+          <a href="pages/contacto.html"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Habla con un asesor</a>
+        </div>
+
+        <div class="trust-block" data-aos="fade-up">
+          <h4>¿Qué puedes esperar?</h4>
+          <ul>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Contenido actualizado (RETIE / seguridad)</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Sesiones en vivo + material de apoyo</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Orientación práctica para aplicar en campo</li>
+          </ul>
+
+          <div class="trust-pill">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            <span>Formación con enfoque en cumplimiento y riesgo</span>
+          </div>
+        </div>
+      </aside>
+
+      
     </div>
-</section>
 
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r17/Stats.min.js"></script>
+    <!-- ==========================================
+         MODAL MEMBRESÍAS (tipo cronograma)
+    =========================================== -->
+    <div class="modal modal--memberships" id="membershipsModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="membershipsTitle">
+      <div class="modal__overlay" data-close="true"></div>
 
-        <div class="container layout-3-cols">
-            
-            <aside class="col-sidebar left" data-aos="fade-up-right">
-                <div class="sidebar-widget">
-                    <h3>Explora</h3>
-                    <ul>
-                        <li><a href="#">Acerca de CIDET</a></li>
-                        <li><a href="#">Centro de Carreras</a></li>
-                        <li><a href="#">Vacantes Expertos</a></li>
-                        <li><a href="pages/blog.html">Blog de Noticias</a></li>
-                    </ul>
-                </div>
-            </aside>
+      <div class="modal__dialog" role="document" tabindex="-1">
+        <button class="modal__close" type="button" aria-label="Cerrar modal" data-close="true">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
 
-            <section class="col-main">
-                
-                <div class="banner-slide" data-aos="fade-up-right">
-                    <div class="banner-content">
-                        <span class="badge-new">NUEVO</span>
-                        <h2>Amplía tus conocimientos con CIDET</h2>
-                        <p>Descubre nuevas oportunidades con nuestros cursos especializados.</p>
-                        <a href="pages/cursos.html" class="btn-banner">Explorar ahora</a>
-                    </div>
-                    <div class="banner-img">
-                        <img src="/assets/img/estudiante.png" alt="Estudiante" onerror="this.src='https://placehold.co/300x200?text=Banner+Slide'">
-                    </div>
-                </div>
+        <div class="modal__content memberships-modal">
+          <div class="memberships-modal__head">
+            <span class="memberships-modal__tag">Novedad</span>
+          </div>
 
-                <div class="content-block" data-aos="fade-up-right">
-                    <h2>Bienvenidos a la plataforma</h2>
-                    <p>En CIDET nos enfocamos en brindarte las herramientas tecnológicas más demandadas.</p>
-                    <div class="stats-container">
-                        <div class="stat-card">
-                            <i class="fa-solid fa-users"></i>
-                            <strong>15k+</strong> <span>Alumnos</span>
-                        </div>
-                        <div class="stat-card">
-                            <i class="fa-solid fa-book-open"></i>
-                            <strong>120+</strong> <span>Cursos</span>
-                        </div>
-                        <div class="stat-card">
-                            <i class="fa-solid fa-chalkboard-user"></i>
-                            <strong>50+</strong> <span>Instructores</span>
-                        </div>
-                    </div>
-                </div>
+          <h3 id="membershipsTitle">Membresías CIDET Capacita</h3>
+          <p class="memberships-modal__lead">
+            Acceso a formaciones seleccionadas durante 6 o 12 meses. Ideal para equipos que necesitan entrenarse de forma continua.
+          </p>
 
-                <div class="section-membresias" data-aos="fade-up-right">
-                    <div class="membresia-card">
-                        <div class="membresia-info">
-                            <i class="fa-solid fa-gem"></i>
-                            <div>
-                                <h3>¡Llegaron las membresías!</h3>
-                                <p>Acceso ilimitado a más de 100 cursos certificados.</p>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-membresia">Ver Planes</a>
-                    </div>
-                </div>
+          <div class="memberships-modal__grid" aria-label="Opciones de membresía">
+            <!-- 6 meses -->
+            <article class="membership-card">
+              <div class="membership-media" aria-hidden="true">
+                <!-- Deja tu imagen aquí -->
+                <img
+                  src="./assets/img/m6.png"
+                  alt="Membresía 6 meses"
+                  onerror="this.style.display='none'"
+                  loading="lazy"
+                />
+              </div>
 
-                <div class="section-programas">
-                    <h3 data-aos="fade-right">Programas de formación</h3>
-                    <div class="propuesta-valor">
-                        <div class="valor-card shape-1" data-aos="zoom-in">
-                            <i class="fa-solid fa-microchip"></i>
-                            <h4>Electricidad</h4>
-                            <p>Técnica avanzada.</p>
-                        </div>
-                        <div class="valor-card shape-2" data-aos="zoom-in" data-aos-delay="100">
-                            <i class="fa-solid fa-solar-panel"></i>
-                            <h4>Energía</h4>
-                            <p>Sostenibilidad.</p>
-                        </div>
-                        <div class="valor-card shape-3" data-aos="zoom-in" data-aos-delay="200">
-                            <i class="fa-solid fa-code"></i>
-                            <h4>Software</h4>
-                            <p>Desarrollo web.</p>
-                        </div>
-                        <div class="valor-card shape-4" data-aos="zoom-in" data-aos-delay="300">
-                            <i class="fa-solid fa-industry"></i>
-                            <h4>Industria</h4>
-                            <p>Eficiencia.</p>
-                        </div>
-                    </div>
-                </div>
+              <div class="membership-body">
+                <h4>Membresía 6 meses</h4>
+                <p class="membership-sub">Para equipos que quieren empezar con ritmo y control.</p>
 
-                <hr style="margin: 3rem 0; border: 0; border-top: 1px solid #eee;">
+                <ul class="membership-list">
+                  <li><i class="fa-solid fa-check" aria-hidden="true"></i> Acceso a formaciones seleccionadas por 6 meses</li>
+                  <li><i class="fa-solid fa-check" aria-hidden="true"></i> Ideal para rotación moderada de personal</li>
+                  <li><i class="fa-solid fa-check" aria-hidden="true"></i> Seguimiento simple y enfoque práctico</li>
+                </ul>
 
-                <div class="categorias-cursos">
-                    <div class="cat-group" data-aos="fade-up-right">
-                        <h3><i class="fa-solid fa-circle-check"></i> Cursos Estándar</h3>
-                        <div class="cursos-grid">
-                            <article class="curso-mini-card standar">
-                                <span class="tag">Básico</span>
-                                <h4>Instalaciones Eléctricas</h4>
-                                <a href="#" class="btn-text">Ver curso</a>
-                            </article>
-                            <article class="curso-mini-card standar">
-                                <span class="tag">Básico</span>
-                                <h4>Excel Técnico</h4>
-                                <a href="#" class="btn-text">Ver curso</a>
-                            </article>
-                        </div>
-                    </div>
+                <p class="membership-rec"><strong>Recomendado para:</strong> Equipos pequeños/medianos o pilotos de capacitación.</p>
 
-                    <div class="cat-group" data-aos="fade-up-right">
-                        <h3><i class="fa-solid fa-star"></i> Cursos Premium</h3>
-                        <div class="cursos-grid">
-                            <article class="curso-mini-card premium">
-                                <span class="tag">Especializado</span>
-                                <h4>Energía Solar</h4>
-                                <a href="#" class="btn-text">Ver curso</a>
-                            </article>
-                        </div>
-                    </div>
+                <a class="btn btn-secondary membership-campus" href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-user-graduate" aria-hidden="true"></i> Ir al campus
+                </a>
+              </div>
+            </article>
 
-                    <div class="cat-group" data-aos="fade-up-right">
-                        <h3><i class="fa-solid fa-award"></i> Diplomados</h3>
-                        <div class="cursos-grid">
-                            <article class="curso-mini-card diplomado">
-                                <span class="tag">Superior</span>
-                                <h4>Gerencia de Proyectos</h4>
-                                <a href="#" class="btn-text">Ver diplomado</a>
-                            </article>
-                        </div>
-                    </div>
-                </div>
+            <!-- 12 meses -->
+            <article class="membership-card">
+              <div class="membership-media" aria-hidden="true">
+                <!-- Deja tu imagen aquí -->
+                <img
+                  src="./assets/img/m12.png"
+                  alt="Membresías 12 meses"
+                  onerror="this.style.display='none'"
+                  loading="lazy"
+                />
+              </div>
 
-                <div class="impacto-section" data-aos="fade-up-right">
-                    <h3>Impacto <span class="highlight">CIDET</span></h3>
-                    <div class="impacto-list">
-                        <div class="impacto-item">
-                            <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                            <div>
-                                <h4>Educación de Alta Calidad</h4>
-                                <p>Programas diseñados con expertos del sector.</p>
-                            </div>
-                        </div>
-                        <div class="impacto-item">
-                            <div class="check-icon"><i class="fa-solid fa-check"></i></div>
-                            <div>
-                                <h4>Certificación Institucional</h4>
-                                <p>Avalada por convenios empresariales.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="membership-body">
+                <h4>Membresía 12 meses</h4>
+                <p class="membership-sub">Para operaciones que necesitan consistencia todo el año.</p>
 
-            </section>
+                <ul class="membership-list">
+                  <li><i class="fa-solid fa-check" aria-hidden="true"></i> Acceso a formaciones seleccionadas por 12 meses</li>
+                  <li><i class="fa-solid fa-check" aria-hidden="true"></i> Mejor continuidad y curva de aprendizaje</li>
+                  <li><i class="fa-solid fa-check" aria-hidden="true"></i> Más estabilidad para entrenar por roles</li>
+                </ul>
 
-            <aside class="col-sidebar right" data-aos="fade-up-left">
-                <div class="sidebar-widget">
-                    <h3>Novedades</h3>
-                    <div class="promo-container">
-                        <div class="promo-item">
-                            <a href="contacto.html" class="promo-link">
-                                <div class="promo-image-wrapper">
-                                    <img src="assets/img/mailing.png" alt="Suscripción al Newsletter" onerror="this.src='https://placehold.co/300x400/FF5A72/FFFFFF?text=Mailing+Promo'">
-                                </div>
-                                <div class="promo-content">
-                                    <h4>¡Aprovecha esta oferta!</h4>
-                                    <span class="btn-cta">Adquirir Promo <i class="fa-solid fa-arrow-right"></i></span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </aside>
+                <p class="membership-rec"><strong>Recomendado para:</strong> Operaciones con turnos, contratistas y formación recurrente.</p>
 
+                <a class="btn btn-secondary membership-campus" href="https://capacita.cidet.org.co/" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-user-graduate" aria-hidden="true"></i> Ir al campus
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="memberships-modal__actions">
+            <a id="membershipsInfo" class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+              Solicitar información
+            </a>
+            <a class="btn btn-secondary" href="pages/contacto.html">
+              Hablar con un asesor
+            </a>
+          </div>
+
+          <p class="memberships-modal__hint">
+            <i class="fa-regular fa-circle-check" aria-hidden="true"></i>
+            Te ayudamos a escoger el plan según tu operación, roles y prioridades.
+          </p>
         </div>
-    </main>
+      </div>
+    </div>
+  </main>
 
-    <footer class="main-footer">
+  <!-- ==========================================
+       FOOTER (NO ELIMINAR)
+  =========================================== -->
+  <footer class="main-footer">
     <div class="container footer-grid">
-        
-        <div class="footer-col brand-col">
-            <img src="/assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto"></a>
-            <p>Formación profesional y consultoría experta para potenciar tu futuro.</p>
-            
-            <div class="footer-info">
-                <i class="fa-regular fa-envelope"></i>
-                <div>
-                    <span>Hable con nosotros</span>
-                    <a href="mailto:capacitacion@cidet.org.co">cidet@ejemplo.com</a>
-                </div>
-            </div>
-        </div>
+      <div class="footer-col brand-col">
+        <img src="/assets/logo_negro.png" alt="Logo de CIDET" width="150" height="auto" />
+        <p>Formación profesional y consultoría experta para potenciar tu futuro.</p>
 
-        <div class="footer-col links-col">
-            <h4>De tu interés</h4>
-            <ul>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./cursos.html">Cursos Recientes</a></li>
-            </ul>
+        <div class="footer-info">
+          <i class="fa-regular fa-envelope" aria-hidden="true"></i>
+          <div>
+            <span>Hable con nosotros</span>
+            <a href="mailto:capacitacion@cidet.org.co">capacitacion@cidet.org.co</a>
+          </div>
         </div>
+      </div>
 
-        <div class="footer-col links-col">
-            <h4>Sobre</h4>
-            <ul>
-                <li><a href="https://cidet.org.co/nosotros/">Acerca de CIDET</a></li>
-                <li><a href="pages/empresas.html">Para Empresas</a></li>
-            </ul>
-        </div>
+      <div class="footer-col links-col">
+        <h4>De tu interés</h4>
+        <ul>
+          <li><a href="./pages/blog.html">Blog</a></li>
+          <li><a href="./pages/cursos.html">Cursos</a></li>
+          <li><a href="./pages/cronograma.html">Cronograma</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col links-col">
+        <h4>Sobre</h4>
+        <ul>
+          <li><a href="https://cidet.org.co/nosotros/" target="_blank" rel="noopener noreferrer">Acerca de CIDET</a></li>
+          <li><a href="./pages/empresas.html">Para Empresas</a></li>
+          <li><a href="./pages/contacto.html">Contacto</a></li>
+        </ul>
+      </div>
     </div>
-    
+
     <div class="container footer-bottom">
-        <div class="socials-icons">
-            <a href="https://www.instagram.com/cidet_org/" aria-label="Instagram" target="_blank" class="social-icon instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/CIDETColombia?_rdc=1&_rdr#" aria-label="Facebook" target="_blank" class="social-icon facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://www.youtube.com/@CIDET_ORG" aria-label="Youtube" target="_blank" class="social-icon youtube">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/cidet-corporaci-n-centro-de-investigaci-n-y-desarrollo-tecnol-gico-del-sector-el-ctrico/" aria-label="LinkedIn" target="_blank" class="social-icon linkedin">
-                <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-        </div>
-        <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados.</p>
+      <div class="socials-icons">
+        <a href="https://www.instagram.com/cidet_org/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" class="social-icon instagram">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.facebook.com/CIDETColombia?_rdc=1&_rdr#" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="social-icon facebook">
+          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.youtube.com/@CIDET_ORG" aria-label="Youtube" target="_blank" rel="noopener noreferrer" class="social-icon youtube">
+          <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/company/cidet-corporaci-n-centro-de-investigaci-n-y-desarrollo-tecnol-gico-del-sector-el-ctrico/"
+          aria-label="LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="social-icon linkedin"
+        >
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+      </div>
+      <p class="copyright">&copy; 2026 CIDET. Todos los derechos reservados.</p>
     </div>
-</footer>
+  </footer>
 
-    <script src="js/main.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init({ duration: 800, once: true });</script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+
 </body>
 </html>

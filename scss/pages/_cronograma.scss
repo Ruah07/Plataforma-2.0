@@ -1,12 +1,13 @@
 // /scss/pages/_cronograma.scss
-// (Pega TODO este bloque tal cual. Mantiene tu estructura y deja SOLO el calendario type="month" + filtro por horas.)
+// ✅ Pega TODO este archivo tal cual (copiar y pegar).
+// Incluye: banner, layout, cards, filtros (solo calendario + horas + búsqueda), modal con scroll mobile, y “upgrade” visual del calendario.
+
 
 // --- ESTILOS DE CRONOGRAMA ---
 
 // Estilo para el Banner Superior (Solución al solapamiento del NAV)
 .page-banner {
   background-color: $color-bg;
-  // 180px de padding superior para empujar el contenido debajo del header fijo
   padding: 180px 0 60px 0;
   text-align: center;
   position: relative;
@@ -59,22 +60,27 @@
   grid-template-columns: 1fr;
   gap: 3rem;
   margin-bottom: 5rem;
-  margin-top: 2rem; // Espacio respecto al banner
+  margin-top: 2rem;
 
   @include respond-to('tablet') {
-    grid-template-columns: 320px 1fr; // Filtros fijos a la izquierda
+    grid-template-columns: 320px 1fr;
   }
 }
+
+/* ==========================================
+   FILTROS (Búsqueda + Calendario + Intensidad)
+========================================== */
 
 .col-filters {
   .filter-widget {
     background: $glass-bg;
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 2rem;
     border-radius: $border-radius;
     border: 1px solid $glass-border;
     position: sticky;
-    top: 120px; // Se mantiene visible al hacer scroll
+    top: 120px;
     box-shadow: $glass-shadow;
 
     h3 {
@@ -84,6 +90,8 @@
       border-bottom: 2px solid $color-primary;
       display: inline-block;
       padding-bottom: 5px;
+
+      i { color: $color-primary; }
     }
 
     .filter-group {
@@ -91,93 +99,117 @@
 
       label {
         display: block;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        font-size: 0.9rem;
+        font-weight: 800;
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
         color: $color-text;
       }
 
       input,
       select {
         width: 100%;
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid rgba($color-text, 0.12);
+        padding: 0.85rem 0.95rem;
+        border-radius: 14px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
         outline: none;
         font-family: inherit;
-        background: #fff;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        font-size: 0.95rem;
+        background: rgba(255, 255, 255, 0.92);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
+
+        &::placeholder {
+          color: rgba($color-text, 0.45);
+        }
 
         &:hover {
           border-color: rgba($color-primary, 0.35);
         }
 
-        &:focus,
         &:focus-visible {
           border-color: $color-primary;
-          box-shadow: 0 0 0 4px rgba($color-primary, 0.16);
+          box-shadow: 0 0 0 4px rgba($color-primary, 0.18);
+        }
+
+        &:active {
+          transform: scale(0.995);
         }
       }
 
-      // Helpers / tips
-      .filter-tip {
-        margin-top: 0.6rem;
+      // Helper debajo del input
+      .filter-help {
+        margin-top: 0.55rem;
         font-size: 0.9rem;
-        color: rgba($color-text, 0.72);
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+        color: rgba($color-text, 0.62);
+        line-height: 1.35;
 
-        i {
-          color: $color-secondary;
+        strong { color: $color-text; }
+        .emoji { margin-left: 0.25rem; }
+      }
+    }
+
+    // Calendario (type="month") — estilo “brand”
+    input[type="month"] {
+      border-color: rgba($color-secondary, 0.25);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.96) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+      );
+
+      &:focus-visible {
+        border-color: $color-secondary;
+        box-shadow: 0 0 0 4px rgba($color-secondary, 0.18);
+      }
+
+      // Icono calendario (Chrome/Safari)
+      &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.9;
+        width: 18px;
+        height: 18px;
+        padding: 6px;
+        border-radius: 10px;
+        background-color: rgba($color-secondary, 0.12);
+        transition: transform 0.15s ease, background-color 0.2s ease;
+
+        &:hover {
+          background-color: rgba($color-secondary, 0.18);
+          transform: translateY(-1px);
         }
       }
     }
 
-    // ===============================
-    // Calendario (input type="month")
-    // ===============================
-    // Nota: solo estiliza el INPUT (campo). El popup es del navegador.
-    .month-picker {
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
+    // Badge opcional (si luego lo agregas en HTML)
+    .filter-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0.6rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      border: 1px solid rgba($color-secondary, 0.28);
+      background: rgba($color-secondary, 0.12);
+      color: $color-secondary;
+      width: fit-content;
 
-      // para evitar que iOS haga zoom raro
-      font-size: 16px;
+      i { font-size: 0.9rem; }
+    }
+  }
 
-      background-color: #fff;
-      background-image: linear-gradient(transparent, transparent);
-      color: $color-text;
-
-      &::-webkit-datetime-edit {
-        color: rgba($color-text, 0.75);
-      }
-
-      &:not(:placeholder-shown)::-webkit-datetime-edit {
-        color: $color-text;
-      }
-
-      // Icono del calendario en webkit
-      &::-webkit-calendar-picker-indicator {
-        cursor: pointer;
-        opacity: 0.8;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-      }
-
-      &:hover::-webkit-calendar-picker-indicator {
-        opacity: 1;
-        transform: translateY(-1px);
-      }
-
-      // estados inválidos (si luego los usas)
-      &:invalid {
-        border-color: rgba(#e74c3c, 0.65);
-        box-shadow: 0 0 0 4px rgba(#e74c3c, 0.12);
-      }
+  // Mobile: sticky puede estorbar
+  @media (max-width: 900px) {
+    .filter-widget {
+      position: relative;
+      top: auto;
     }
   }
 }
+
+/* ==========================================
+   CARDS CRONOGRAMA
+========================================== */
 
 .schedule-card {
   background: white;
@@ -187,7 +219,7 @@
   padding: 1.5rem 2rem;
   border-radius: $border-radius;
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0,0,0,0.05);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
   overflow: visible;
@@ -195,7 +227,7 @@
   &:hover {
     transform: scale(1.02) translateX(10px);
     border-color: $color-secondary;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     z-index: 5;
   }
 
@@ -208,16 +240,8 @@
     text-align: center;
     box-shadow: 0 10px 20px rgba($color-primary, 0.2);
 
-    .day {
-      font-size: 2rem;
-      font-weight: 800;
-      display: block;
-    }
-    .month {
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
+    .day { font-size: 2rem; font-weight: 800; display: block; }
+    .month { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
   }
 
   .schedule-info {
@@ -239,24 +263,15 @@
       line-height: 1.3;
     }
 
-    // Ajustado para que meta-info y meta-grid funcionen igual
-    .meta-info,
-    .meta-grid {
+    .meta-info, .meta-grid {
       display: flex;
       gap: 1.5rem;
       color: #777;
       font-size: 0.9rem;
       margin-top: 0.5rem;
 
-      i {
-        color: $color-secondary;
-        margin-right: 5px;
-      }
-
-      span {
-        display: flex;
-        align-items: center;
-      }
+      i { color: $color-secondary; margin-right: 5px; }
+      span { display: flex; align-items: center; }
     }
   }
 
@@ -265,17 +280,44 @@
     text-align: center;
     gap: 1.5rem;
 
-    .schedule-date {
-      width: 100%;
-    }
-
-    .meta-info,
-    .meta-grid {
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .schedule-date { width: 100%; }
+    .meta-info, .meta-grid { justify-content: center; flex-wrap: wrap; }
   }
 }
+
+.schedule-action {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .btn { white-space: nowrap; }
+}
+
+// Placeholder cards (meses sin cursos)
+.schedule-card--placeholder {
+  opacity: 0.9;
+
+  &:hover {
+    transform: none;
+    border-color: rgba(0,0,0,0.05);
+    box-shadow: none;
+  }
+
+  .schedule-date {
+    background: linear-gradient(135deg, rgba($color-text,0.85), rgba($color-text,0.65));
+    box-shadow: none;
+  }
+
+  .btn[disabled] {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+/* ==========================================
+   NO RESULTS
+========================================== */
 
 .no-results-container {
   text-align: center;
@@ -309,36 +351,25 @@
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-body.modal-open {
-  overflow: hidden;
-}
+/* ==========================================
+   MODAL (Detalle curso) + SCROLL MOBILE
+========================================== */
 
-// ==========================================
-// MODAL - Detalle de curso (Accesible)
-// ==========================================
+body.modal-open { overflow: hidden; }
+
 .modal {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: none;
-
-  // para permitir padding y evitar que pegue al borde
   padding: 1rem;
 }
 
-.modal.is-open {
-  display: block;
-}
+.modal.is-open { display: block; }
 
 .modal__overlay {
   position: absolute;
@@ -353,21 +384,18 @@ body.modal-open {
   margin: 6vh auto 0;
   background: white;
   border-radius: 20px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+  border: 1px solid rgba(0,0,0,0.06);
   overflow: hidden;
   animation: modalIn 180ms ease-out;
 
-  // ✅ FIX: limita altura y permite scroll interno
+  // ✅ FIX scroll interno
   max-height: calc(100svh - 2rem);
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-.modal__content {
-  padding: 1.75rem;
-  padding-bottom: 1.25rem;
-}
+.modal__content { padding: 1.75rem; padding-bottom: 1.25rem; }
 
 .modal__close {
   position: absolute;
@@ -376,20 +404,15 @@ body.modal-open {
   width: 44px;
   height: 44px;
   border-radius: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.9);
   cursor: pointer;
   display: grid;
   place-items: center;
   transition: transform 0.2s ease, background 0.2s ease;
 
-  &:hover {
-    transform: translateY(-1px);
-  }
-  &:focus-visible {
-    outline: 3px solid rgba($color-secondary, 0.6);
-    outline-offset: 2px;
-  }
+  &:hover { transform: translateY(-1px); }
+  &:focus-visible { outline: 3px solid rgba($color-secondary, 0.6); outline-offset: 2px; }
 }
 
 .modal__tag {
@@ -423,9 +446,7 @@ body.modal-open {
   border: 1px solid $glass-border;
   border-radius: 16px;
 
-  @include respond-to('tablet') {
-    grid-template-columns: 1fr 1fr;
-  }
+  @include respond-to('tablet') { grid-template-columns: 1fr 1fr; }
 }
 
 .modal__metaItem {
@@ -434,15 +455,13 @@ body.modal-open {
   gap: 10px;
   color: rgba($color-text, 0.8);
 
-  i {
-    color: $color-secondary;
-  }
+  i { color: $color-secondary; }
 }
 
 .modal__details {
   margin-top: 1rem;
   border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0,0,0,0.06);
   padding: 0.75rem 1rem;
   background: #fff;
 
@@ -452,9 +471,7 @@ body.modal-open {
     color: $color-text;
     list-style: none;
 
-    &::-webkit-details-marker {
-      display: none;
-    }
+    &::-webkit-details-marker { display: none; }
   }
 
   p {
@@ -471,59 +488,14 @@ body.modal-open {
   flex-wrap: wrap;
 }
 
-// ==========================================
-// Ajustes en acciones de cronograma
-// ==========================================
-.schedule-action {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  flex-wrap: wrap;
-
-  .btn {
-    white-space: nowrap;
-  }
-}
-
-.schedule-card--placeholder {
-  opacity: 0.9;
-
-  &:hover {
-    transform: none;
-    border-color: rgba(0, 0, 0, 0.05);
-    box-shadow: none;
-  }
-
-  .schedule-date {
-    background: linear-gradient(135deg, rgba($color-text, 0.85), rgba($color-text, 0.65));
-    box-shadow: none;
-  }
-
-  .btn[disabled] {
-    opacity: 0.55;
-    cursor: not-allowed;
-  }
-}
-
 @keyframes modalIn {
-  from {
-    transform: translateY(10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
-// ==========================================
-// MODAL MOBILE: Bottom Sheet + Scroll OK
-// (no cambia HTML)
-// ==========================================
+/* ===== MÓVIL: Bottom sheet ===== */
 @media (max-width: 480px) {
-  .modal {
-    padding: 0; // sheet a borde
-  }
+  .modal { padding: 0; }
 
   .modal__dialog {
     width: 100%;
@@ -534,7 +506,6 @@ body.modal-open {
     right: 0;
     bottom: 0;
 
-    // Altura tipo sheet
     max-height: 85svh;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -546,14 +517,13 @@ body.modal-open {
     padding: 1.25rem 1.25rem 0.75rem;
   }
 
-  // CTAs siempre visibles
   .modal__actions {
     position: sticky;
     bottom: 0;
     background: #fff;
     padding: 0.9rem 1.25rem 1rem;
-    margin: 1rem -1.25rem 0; // ocupa ancho completo dentro del padding
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    margin: 1rem -1.25rem 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
@@ -566,12 +536,7 @@ body.modal-open {
 }
 
 @keyframes sheetIn {
-  from {
-    transform: translateY(16px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
+

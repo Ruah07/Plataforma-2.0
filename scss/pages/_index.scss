@@ -1,3 +1,5 @@
+// /scss/pages/_index.scss
+
 /* ==========================================
    HERO + PARTICLES
 ========================================== */
@@ -17,13 +19,12 @@
     position: relative;
     z-index: 3;
 
-    @include respond-to('tablet') {
+    @include respond-to("tablet") {
       grid-template-columns: 1.2fr 1fr;
     }
   }
 
   .hero-text {
-    // efecto vidrio
     background-color: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -50,7 +51,7 @@
       font-size: 2.5rem;
       line-height: 1.2;
       color: $color-text;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.1rem;
       font-weight: 800;
 
       .highlight {
@@ -61,23 +62,51 @@
         color: $color-primary;
       }
 
-      @include respond-to('tablet') {
-        font-size: 3.5rem;
+      @include respond-to("tablet") {
+        font-size: 2.3rem;
       }
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: lighten($color-text, 20%);
-      margin-bottom: 2rem;
-      max-width: 500px;
+      margin-bottom: 1.5rem;
+      max-width: 560px;
     }
 
     .hero-buttons {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+
+      .kpi {
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: 16px;
+        padding: 0.85rem 0.9rem;
+        text-align: left;
+
+        strong {
+          display: block;
+          font-weight: 900;
+          color: $color-text;
+          letter-spacing: -0.2px;
+        }
+
+        span {
+          display: block;
+          font-size: 0.85rem;
+          color: rgba($color-text, 0.65);
+        }
+      }
     }
 
     @media (max-width: 992px) {
@@ -85,31 +114,49 @@
       text-align: center;
       padding: 2rem;
 
-      h1 { font-size: 2.8rem; }
-      .hero-buttons { justify-content: center; }
-      p { margin-left: auto; margin-right: auto; }
+      h1 {
+        font-size: 2.6rem;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-kpis {
+        grid-template-columns: 1fr;
+        text-align: center;
+
+        .kpi {
+          text-align: center;
+        }
+      }
     }
 
     @media (max-width: 576px) {
       padding: 1.5rem;
       border-radius: 16px;
 
-      h1 { font-size: 2.2rem; }
-      p { font-size: 1rem; }
+      h1 {
+        font-size: 2.15rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
 
       .hero-buttons {
         flex-direction: column;
         width: 100%;
 
-        .btn { width: 100%; }
+        .btn {
+          width: 100%;
+        }
+      }
+
+      .hero-kpis {
+        grid-template-columns: 1fr;
       }
     }
-  }
-
-  .hero-image {
-    width: 100%;
-    min-width: 0;
-    overflow: visible;
   }
 
   .hero-image img {
@@ -120,11 +167,6 @@
 
     &:hover {
       transform: perspective(1000px) rotateY(0deg);
-    }
-
-    // ✅ FIX: el 3D en móvil puede “salirse” y cortar el layout
-    @media (max-width: 576px) {
-      transform: none !important;
     }
   }
 }
@@ -162,24 +204,35 @@
   color: white;
   margin-bottom: 3rem;
   overflow: hidden;
-  gap: 1.5rem;
 
   .banner-content {
-    max-width: 60%;
+    max-width: 62%;
 
     .badge-new {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
       background: rgba(255, 255, 255, 0.2);
-      padding: 4px 12px;
-      border-radius: 20px;
+      padding: 6px 14px;
+      border-radius: 999px;
       font-size: 0.75rem;
-      font-weight: 700;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
     }
 
     h2 {
       color: white;
       font-size: 2rem;
-      margin: 1rem 0;
+      margin: 1rem 0 0.75rem;
       font-weight: 800;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.6;
+      margin: 0 0 1.1rem;
     }
 
     .btn-banner {
@@ -188,9 +241,11 @@
       color: $color-primary;
       padding: 12px 30px;
       border-radius: 12px;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
       transition: 0.3s;
+      border: 0;
+      cursor: pointer;
 
       &:hover {
         transform: translateY(-3px);
@@ -204,26 +259,18 @@
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
   }
 
-  // ✅ FIX responsive: evita “cortes” en móvil
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 1.25rem;
     padding: 2rem;
 
     .banner-content {
       max-width: 100%;
+      text-align: center;
     }
 
     .banner-img img {
       width: 180px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    padding: 1.5rem;
-
-    .banner-img img {
-      width: 160px;
     }
   }
 }
@@ -231,27 +278,280 @@
 // 2) Bienvenida + stats
 .content-block {
   margin-bottom: 3rem;
-  h2 { font-weight: 800; margin-bottom: 1rem; }
+
+  h2 {
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.3px;
+  }
+
+  p {
+    color: rgba($color-text, 0.72);
+    line-height: 1.7;
+  }
 }
 
 .stats-container {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   flex-wrap: wrap;
 
   .stat-card {
     flex: 1;
     background: white;
-    padding: 1.5rem;
+    padding: 1.4rem;
     border-radius: $border-radius;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.05);
-    min-width: 120px;
+    min-width: 160px;
 
-    i { font-size: 1.5rem; color: $color-secondary; margin-bottom: 0.5rem; display: block; }
-    strong { display: block; font-size: 1.5rem; color: $color-text; font-weight: 800; }
-    span { font-size: 0.85rem; color: lighten($color-text, 30%); }
+    i {
+      font-size: 1.5rem;
+      color: $color-secondary;
+      margin-bottom: 0.45rem;
+      display: block;
+    }
+
+    strong {
+      display: block;
+      font-size: 1.15rem;
+      color: $color-text;
+      font-weight: 900;
+    }
+
+    span {
+      font-size: 0.85rem;
+      color: rgba($color-text, 0.6);
+    }
+  }
+}
+
+/* ==========================================
+   ✅ SIDEBAR "ACCESOS RÁPIDOS" (PÍLDORAS) - NUEVO
+   - No cambia HTML
+========================================== */
+
+.col-sidebar {
+  h3 {
+    margin: 0 0 0.9rem;
+    font-weight: 900;
+    letter-spacing: -0.2px;
+  }
+}
+
+.sidebar-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  margin: 0 0 1rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    padding: 0.85rem 0.95rem;
+    border-radius: 16px;
+    background: rgba($color-primary, 0.06);
+    border: 1px solid rgba($color-primary, 0.14);
+
+    color: $color-text;
+    text-decoration: none;
+    font-weight: 800;
+    line-height: 1.2;
+
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    i {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+
+      background: rgba($color-primary, 0.10);
+      border: 1px solid rgba($color-primary, 0.18);
+      color: $color-primary;
+      font-size: 0.95rem;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      background: rgba($color-secondary, 0.10);
+      border-color: rgba($color-secondary, 0.28);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+
+      i {
+        background: rgba($color-secondary, 0.12);
+        border-color: rgba($color-secondary, 0.22);
+        color: $color-secondary;
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba($color-secondary, 0.22);
+      border-color: rgba($color-secondary, 0.45);
+    }
+  }
+
+  @media (min-width: 520px) and (max-width: 992px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    a {
+      white-space: normal;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-links a {
+    padding: 0.8rem 0.9rem;
+
+    i {
+      width: 34px;
+      height: 34px;
+    }
+  }
+}
+
+// Sidebar trust
+.trust-block {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 18px;
+  background: $glass-bg;
+  border: 1px solid $glass-border;
+
+  h4 {
+    margin: 0 0 0.85rem;
+    font-weight: 900;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.9rem;
+
+    li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 0.45rem 0;
+      color: rgba($color-text, 0.75);
+
+      i {
+        color: $color-secondary;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  .trust-pill {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 0.75rem 0.85rem;
+    border-radius: 16px;
+    background: rgba($color-secondary, 0.12);
+    color: rgba($color-text, 0.82);
+    border: 1px solid rgba($color-secondary, 0.18);
+    font-weight: 800;
+    font-size: 0.85rem;
+
+    i {
+      color: $color-secondary;
+    }
+  }
+}
+
+/* ==========================================
+   WHY CIDET
+========================================== */
+
+.why-cidet {
+  margin: 2.5rem 0 3rem;
+
+  h3 {
+    font-weight: 900;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.2px;
+  }
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @include respond-to("tablet") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.feature-card {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  padding: 1.25rem 1.25rem 1.1rem;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+  i {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: rgba($color-primary, 0.1);
+    color: $color-primary;
+    margin-bottom: 0.75rem;
+  }
+
+  h4 {
+    margin: 0 0 0.35rem;
+    font-weight: 900;
+    color: $color-text;
+  }
+
+  p {
+    margin: 0;
+    color: rgba($color-text, 0.7);
+    line-height: 1.6;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba($color-secondary, 0.5);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.cta-strip {
+  margin-top: 1.25rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 18px;
+  background: rgba($color-primary, 0.06);
+  border: 1px solid rgba($color-primary, 0.16);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  p {
+    margin: 0;
+    color: rgba($color-text, 0.8);
+    line-height: 1.5;
   }
 }
 
@@ -274,10 +574,25 @@
     .membresia-info {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.25rem;
 
-      i { font-size: 3rem; color: #ffd700; }
-      h3 { font-weight: 800; color: $color-text; }
+      i {
+        font-size: 3rem;
+        color: #ffd700;
+      }
+
+      h3 {
+        font-weight: 900;
+        color: $color-text;
+        margin: 0;
+      }
+
+      p {
+        margin: 0.35rem 0 0;
+        color: rgba($color-text, 0.72);
+        line-height: 1.6;
+        max-width: 520px;
+      }
     }
 
     .btn-membresia {
@@ -285,86 +600,99 @@
       color: white;
       padding: 14px 28px;
       border-radius: 12px;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
 
-      &:hover { background: $color-primary; }
+      &:hover {
+        background: $color-primary;
+      }
     }
-  }
-}
-
-// 4) Programas
-.propuesta-valor {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-
-  .valor-card {
-    padding: 2rem;
-    border-radius: $border-radius;
-    text-align: center;
-    transition: 0.3s;
-
-    i { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-    h4 { font-weight: 700; margin-bottom: 0.5rem; }
-
-    &:hover { transform: translateY(-5px); }
-
-    &.shape-1 { background: $shape-1; color: #d4832c; }
-    &.shape-2 { background: $shape-2; color: #4c6ef5; }
-    &.shape-3 { background: $shape-3; color: #51cf66; }
-    &.shape-4 { background: $shape-4; color: #ff6b6b; }
   }
 }
 
 // 5) Categorías
 .cat-group {
-  margin-top: 3.5rem;
+  margin-top: 3.2rem;
 
   h3 {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1.2rem;
   }
 }
 
 .cursos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
 }
 
 .curso-mini-card {
   background: white;
   padding: 1.5rem;
   border-radius: 16px;
-  border-left: 6px solid #eee;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 15px rgb(0 0 0 / 16%);
 
-  &.standar { border-left-color: $color-secondary; }
-  &.premium { border-left-color: #fab005; background: #fffdf5; }
-  &.diplomado { border-left-color: $color-primary; background: #fff5f6; }
+  p {
+    color: rgba($color-text, 0.72);
+    line-height: 1.6;
+    margin: 0 0 0.9rem;
+  }
 
-  .tag { font-size: 0.7rem; font-weight: 800; color: #999; text-transform: uppercase; }
-  h4 { margin: 0.5rem 0; font-weight: 700; }
-  .btn-text { color: $color-primary; font-weight: 700; text-decoration: none; }
+  &.standar {
+    border-left-color: $color-secondary;
+  }
+
+  &.premium {
+    background: #fffdf5;
+  }
+
+  &.diplomado {
+    border-left-color: $color-primary;
+    background: #fff5f6;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  h4 {
+    margin: 0.5rem 0 0.45rem;
+    font-weight: 900;
+  }
+
+  .btn-text {
+    color: $color-primary;
+    font-weight: 800;
+    text-decoration: none;
+  }
 }
 
 // 6) Impacto
 .impacto-section {
-  margin-top: 4rem;
-  h3 { font-weight: 800; margin-bottom: 2rem; }
-  .highlight { color: $color-primary; }
+  margin-top: 3.6rem;
+
+  h3 {
+    font-weight: 900;
+    margin-bottom: 1.2rem;
+  }
+
+  .highlight {
+    color: $color-primary;
+  }
 }
 
 .impacto-item {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
+  gap: 1.25rem;
+  margin-bottom: 1.15rem;
+  padding: 1.25rem;
   background: white;
   border-radius: $border-radius;
   border: 1px solid #eee;
@@ -381,21 +709,28 @@
     flex-shrink: 0;
   }
 
-  h4 { font-weight: 700; margin-bottom: 0.3rem; }
-  p { font-size: 0.9rem; color: #666; }
+  h4 {
+    font-weight: 900;
+    margin-bottom: 0.2rem;
+  }
 
-  @media (max-width: 576px) {
-    flex-direction: column;
-    align-items: flex-start;
+  p {
+    font-size: 0.95rem;
+    color: rgba($color-text, 0.68);
+    margin: 0;
+    line-height: 1.6;
   }
 }
 
-// 7) Promo item
+/* ==========================================
+   PROMO ITEM (mailing)
+========================================== */
+
 .promo-item {
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   position: relative;
   z-index: 1;
@@ -417,11 +752,11 @@
       display: block;
       border-radius: 16px;
       transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     }
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: -150%;
@@ -429,9 +764,9 @@
       height: 100%;
       background: linear-gradient(
         to right,
-        rgba(255,255,255,0) 0%,
-        rgba(255,255,255,0.4) 50%,
-        rgba(255,255,255,0) 100%
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
       );
       transform: skewX(-25deg);
       transition: 0.7s;
@@ -446,8 +781,19 @@
     position: relative;
     z-index: 3;
 
-    h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: $color-text; }
-    p { font-size: 0.85rem; color: #666; margin-bottom: 1.2rem; }
+    h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.35rem;
+      color: $color-text;
+      font-weight: 900;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: rgba($color-text, 0.68);
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
   }
 
   .btn-cta {
@@ -456,61 +802,327 @@
     color: white;
     padding: 0.8rem 1.5rem;
     border-radius: 50px;
-    font-weight: 700;
+    font-weight: 900;
     font-size: 0.8rem;
     text-transform: uppercase;
     transition: 0.3s;
     box-shadow: 0 4px 10px rgba($color-primary, 0.3);
+    text-decoration: none;
 
-    i { margin-left: 8px; transition: transform 0.3s ease; }
+    i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
   }
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
     z-index: 10;
 
     .promo-image-wrapper img {
       transform: scale(1.1) translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .promo-image-wrapper::after { left: 150%; }
-    .btn-cta i { transform: translateX(5px); }
+    .promo-image-wrapper::after {
+      left: 150%;
+    }
+
+    .btn-cta i {
+      transform: translateX(5px);
+    }
   }
 }
 
-// ==========================================
-// FIX: Cards cortadas en móvil (home)
-// ==========================================
+// Newsletter (dentro del promo)
+.newsletter {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.75rem 0 0.9rem;
 
-// En grids, evita que los hijos se salgan del contenedor (clásico)
+  input {
+    width: 100%;
+    padding: 0.85rem 0.9rem;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    font-family: inherit;
+    outline: none;
+
+    &:focus {
+      border-color: $color-secondary;
+      box-shadow: 0 0 0 4px rgba($color-secondary, 0.2);
+    }
+  }
+
+  button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .newsletter-help {
+    margin: 0;
+    font-size: 0.8rem;
+    color: rgba($color-text, 0.6);
+  }
+}
+
+/* ==========================================
+   MODAL MEMBRESÍAS (FIXES pedidos)
+========================================== */
+
+.modal.modal--memberships {
+  .modal__dialog {
+    width: min(980px, 96vw);
+    max-height: 90vh;
+    overflow: hidden;
+  }
+
+  .memberships-modal {
+    padding: 1.25rem 1.25rem 1rem;
+  }
+
+  .memberships-modal__head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 0 0.75rem;
+  }
+
+  .memberships-modal__tag {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 900;
+    font-size: 0.75rem;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    background: rgba($color-secondary, 0.12);
+    border: 1px solid rgba($color-secondary, 0.25);
+    color: $color-secondary;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    font-weight: 900;
+  }
+
+  .memberships-modal__lead {
+    margin: 0 0 1rem;
+    color: rgba($color-text, 0.75);
+    line-height: 1.6;
+  }
+
+  .memberships-modal__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    max-height: 52vh;
+    overflow: auto;
+    padding-right: 6px;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.25) transparent;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.2);
+      border-radius: 99px;
+    }
+  }
+
+  .membership-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+
+  .membership-media {
+    background: rgba($color-secondary, 0.07);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    min-height: 160px;
+    display: grid;
+    place-items: center;
+
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .membership-body {
+    padding: 1rem 1rem 1.1rem;
+
+    h4 {
+      margin: 0 0 0.25rem;
+      font-weight: 900;
+    }
+
+    .membership-sub {
+      margin: 0 0 0.75rem;
+      color: rgba($color-text, 0.72);
+      line-height: 1.5;
+    }
+  }
+
+  .membership-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.85rem;
+
+    li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 0.4rem 0;
+      color: rgba($color-text, 0.78);
+
+      i {
+        color: $color-secondary;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  .membership-rec {
+    margin: 0 0 0.9rem;
+    color: rgba($color-text, 0.75);
+    line-height: 1.5;
+  }
+
+  .membership-campus {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 999px;
+    padding: 0.65rem 1rem;
+    font-weight: 900;
+  }
+
+  .memberships-modal__actions {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.06);
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.9rem 1.25rem;
+      font-weight: 900;
+    }
+  }
+
+  .memberships-modal__hint {
+    margin: 0.75rem 0 0;
+    color: rgba($color-text, 0.65);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    i {
+      color: $color-secondary;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .modal__dialog {
+      width: 100vw;
+      max-height: 92vh;
+      border-radius: 18px 18px 0px 0px;
+    }
+
+    .memberships-modal {
+      padding: 1rem;
+    }
+
+    .memberships-modal__grid {
+      grid-template-columns: 1fr;
+      max-height: 54vh;
+    }
+
+    .membership-media {
+      min-height: 140px;
+
+      img {
+        height: 140px;
+      }
+    }
+
+    .memberships-modal__actions {
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+/* ==========================================
+FIX: Cards cortadas en móvil (home)
+========================================== */
+
 .layout-3-cols > * {
   min-width: 0;
 }
 
-// Asegura que no haya elementos que “empujen” el ancho
-.hero-text,
-.content-block,
-.promo-item,
-.banner-slide,
-.filter-widget {
+.col-sidebar,
+.col-main,
+.col-sidebar2 {
   max-width: 100%;
+  overflow: hidden;
 }
 
-// Evita cortes por textos muy largos (links o palabras)
 .col-sidebar a,
 .col-main a,
+.col-sidebar2 a,
 .hero-text h1,
 .hero-text p {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
 
-// Ajuste de padding en móvil para que no “toque” el borde
 @media (max-width: 480px) {
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+
+  .col-main,
+  .col-sidebar,
+  .col-sidebar2 {
+    padding: 1.25rem;
+    border-radius: 18px;
+  }
+}
+
+/* Utilidad accesible (por si no la tienes global) */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

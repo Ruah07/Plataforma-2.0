@@ -414,4 +414,88 @@ Modalidad: ${course.modality || "Por confirmar"}.
       }
     });
   }
+
+  // ==========================================
+  // 7) MODAL MEMBRESÍAS (HOME) ✅ NUEVO
+  // ==========================================
+  const membershipsModal = $("#membershipsModal");
+  const openMembershipBtns = $$(".js-open-memberships");
+
+  if (membershipsModal && openMembershipBtns.length) {
+    const overlay = $(".modal__overlay", membershipsModal);
+    const dialog = $(".modal__dialog", membershipsModal);
+    const closeEls = $$("[data-close='true']", membershipsModal);
+
+    const waBtn = $("#membershipsInfo"); // botón “Solicitar información” del modal
+    let lastFocus = null;
+
+    const getFocusable = () =>
+      $$(
+        "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])",
+        membershipsModal
+      ).filter((el) => !el.hasAttribute("disabled"));
+
+    const open = () => {
+      lastFocus = document.activeElement;
+
+      // WhatsApp prellenado (general)
+      const message = `Hola CIDET Capacita, quiero información sobre las Membresías (6 y 12 meses).
+¿Me pueden compartir beneficios, precios y proceso de inscripción?`;
+
+      const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+      if (waBtn) {
+        waBtn.href = waUrl;
+        waBtn.target = "_blank";
+        waBtn.rel = "noopener noreferrer";
+        waBtn.setAttribute(
+          "aria-label",
+          "Solicitar información por WhatsApp sobre Membresías (se abre en una nueva pestaña)"
+        );
+      }
+
+      membershipsModal.classList.add("is-open");
+      membershipsModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+
+      const focusables = getFocusable();
+      (focusables[0] || dialog)?.focus?.();
+    };
+
+    const close = () => {
+      membershipsModal.classList.remove("is-open");
+      membershipsModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    openMembershipBtns.forEach((btn) => btn.addEventListener("click", open));
+    closeEls.forEach((el) => el.addEventListener("click", close));
+    if (overlay) overlay.addEventListener("click", close);
+
+    document.addEventListener("keydown", (e) => {
+      if (!membershipsModal.classList.contains("is-open")) return;
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      }
+
+      if (e.key === "Tab") {
+        const focusables = getFocusable();
+        if (!focusables.length) return;
+
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
 });
