@@ -1,42 +1,51 @@
 // scss/components/_sidebar.scss
+// Sidebar / navegación lateral (mínimo para evitar error de import)
 
-.sidebar-widget {
-  margin-bottom: 2rem;
-  position: sticky;
-  top: 100px;
+.sidebar {
+  background: $glass-bg;
+  border: 1px solid $glass-border;
+  border-radius: $border-radius;
+  box-shadow: $glass-shadow;
+  padding: 1rem;
 
-  h3 {
-    font-size: 1.1rem;
-    color: $color-accent;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid $color-secondary; // Subrayado azul tecnológico
-    display: inline-block;
+  .sidebar__title {
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+    color: $color-text;
   }
 
-  ul {
-    li {
-      margin-bottom: 0.8rem;
+  .sidebar__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
 
-      a {
-        color: lighten($color-accent, 10%);
-        transition: color 0.2s;
-        display: flex;
-        align-items: center;
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 14px;
+      color: $color-text;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: background 0.2s ease, border-color 0.2s ease;
 
-        // Pequeño indicador antes del texto
-        &::before {
-          content: '•';
-          color: $color-primary;
-          font-weight: bold;
-          margin-right: 0.5rem;
-          font-size: 1.2rem;
-        }
+      &:hover {
+        background: rgba($color-primary, 0.08);
+        border-color: rgba($color-primary, 0.14);
+      }
 
-        &:hover {
-          color: $color-primary;
-          transform: translateX(5px); // Pequeño desplazamiento a la derecha
-        }
+      &:focus-visible {
+        outline: 3px solid rgba($color-secondary, 0.55);
+        outline-offset: 2px;
+      }
+
+      &.active {
+        background: rgba($color-primary, 0.12);
+        border-color: rgba($color-primary, 0.22);
+        font-weight: 900;
       }
     }
   }

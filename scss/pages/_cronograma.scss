@@ -273,6 +273,53 @@
       i { color: $color-secondary; margin-right: 5px; }
       span { display: flex; align-items: center; }
     }
+
+    /* ==========================================
+      ✅ PRECIO (NUEVO) — NO TOCA NADA MÁS
+    ========================================== */
+
+    .schedule-price,
+    .meta-price,
+    .price,
+    .price-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0.65rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.92rem;
+      color: $color-text;
+      background: rgba($color-primary, 0.10);
+      border: 1px solid rgba($color-primary, 0.18);
+      width: max-content;
+      line-height: 1;
+
+      i {
+        color: $color-primary;
+        margin-right: 0;
+        font-size: 0.95rem;
+      }
+
+      small,
+      .label {
+        font-weight: 800;
+        font-size: 0.78rem;
+        color: rgba($color-text, 0.70);
+      }
+    }
+
+    // Si el precio está dentro del bloque de meta (para que no se “rompa” el layout)
+    .meta-info,
+    .meta-grid {
+      .schedule-price,
+      .meta-price,
+      .price,
+      .price-tag {
+        margin-top: 0; // ✅ al estar dentro de meta, no suma separación extra
+      }
+    }
   }
 
   @media (max-width: 768px) {
@@ -282,6 +329,16 @@
 
     .schedule-date { width: 100%; }
     .meta-info, .meta-grid { justify-content: center; flex-wrap: wrap; }
+
+    .schedule-info {
+      .schedule-price,
+      .meta-price,
+      .price,
+      .price-tag {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
   }
 }
 
@@ -410,6 +467,7 @@ body.modal-open { overflow: hidden; }
   display: grid;
   place-items: center;
   transition: transform 0.2s ease, background 0.2s ease;
+  z-index: 10;
 
   &:hover { transform: translateY(-1px); }
   &:focus-visible { outline: 3px solid rgba($color-secondary, 0.6); outline-offset: 2px; }
@@ -540,3 +598,294 @@ body.modal-open { overflow: hidden; }
   to { transform: translateY(0); opacity: 1; }
 }
 
+/* ==========================================
+   PROMO MODAL (Cronograma) - 2 columnas + imagen pequeña + textos mejorados
+========================================== */
+
+.modal--promo {
+  .modal__dialog {
+    margin: 5vh auto 0;
+
+    // ✅ ancho “grande” SOLO en desktop para no romper mobile
+    @media (min-width: 900px) {
+      width: min(980px, calc(100% - 2rem));
+    }
+  }
+
+  // ✅ Mobile: cubrir ancho completo (bottom sheet)
+  @media (max-width: 480px) {
+    .modal { padding: 0; }
+
+    .modal__dialog {
+      width: 100%;
+      margin: 0;
+      border-radius: 22px 22px 0 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  .promo-content {
+    padding: 1.35rem 1.35rem 1.05rem;
+  }
+
+  .promo-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.95rem;
+
+    .promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.82rem;
+      color: $color-primary;
+      background: rgba($color-primary, 0.10);
+      border: 1px solid rgba($color-primary, 0.18);
+      width: fit-content;
+    }
+
+    // ✅ responsive correcto: centrado y en columna
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 0.9rem 0 0.85rem;
+    }
+  }
+
+  .promo-kicker {
+    margin: 0;
+    color: rgba($color-text, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.35;
+    text-align: right;
+    max-width: 360px;
+
+    @media (max-width: 480px) {
+      text-align: center;
+      max-width: 100%;
+    }
+  }
+
+  .promo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+    align-items: stretch;
+
+    @media (min-width: 900px) {
+      grid-template-columns: 320px 1fr;
+      gap: 1.35rem;
+    }
+  }
+
+  .promo-media {
+    border-radius: 18px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background:
+      radial-gradient(1200px 500px at 10% 10%, rgba($color-primary, 0.18), transparent 55%),
+      radial-gradient(900px 420px at 90% 20%, rgba($color-secondary, 0.20), transparent 55%),
+      linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.75));
+    box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+    padding: 1rem;
+    display: grid;
+    place-items: center;
+    min-height: 200px;
+
+    img {
+      width: 100%;
+      max-width: fit-content;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,0.18));
+    }
+
+    @media (min-width: 900px) {
+      min-height: 100%;
+      padding: 1.25rem;
+      img { max-width: fit-content; }
+    }
+  }
+
+  .promo-body {
+    h3 {
+      margin: 0.15rem 0 0.55rem;
+      font-size: 1.55rem;
+      line-height: 1.18;
+      color: $color-text;
+      font-weight: 900;
+
+      .highlight {
+        color: $color-primary;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 1.35rem;
+        text-align: center;
+      }
+    }
+
+    .promo-neto {
+      margin: 0 0 0.85rem;
+      font-size: 0.95rem;
+      color: rgba($color-text, 0.78);
+
+      strong {
+        color: $color-text;
+      }
+    }
+  }
+
+  .promo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.9rem;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .promo-item {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 0.9rem 0.95rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+
+    @media (max-width: 480px) {
+      grid-template-columns: 62px 1fr;
+      padding: 0.85rem 0.9rem;
+    }
+  }
+
+  .promo-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 14px;
+    font-weight: 900;
+    color: #fff;
+    background: $color-primary;
+    box-shadow: 0 10px 18px rgba($color-primary, 0.25);
+    letter-spacing: 0.2px;
+    font-size: 0.95rem;
+  }
+
+  .promo-item__text {
+    display: grid;
+    gap: 0.2rem;
+
+    strong {
+      color: $color-text;
+      font-weight: 900;
+      font-size: 0.98rem;
+      line-height: 1.2;
+    }
+
+    span {
+      color: rgba($color-text, 0.70);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+  }
+
+  .promo-extra {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.95rem 0.95rem;
+    border-radius: 16px;
+    border: 1px solid rgba($color-secondary, 0.22);
+    background: rgba($color-secondary, 0.08);
+    color: rgba($color-text, 0.85);
+
+    i {
+      margin-top: 2px;
+      color: $color-secondary;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.5;
+      font-size: 0.93rem;
+    }
+
+    strong {
+      color: $color-text;
+    }
+  }
+
+  .promo-footnote {
+    margin: 0.85rem 0 0;
+    font-size: 0.88rem;
+    color: rgba($color-text, 0.62);
+  }
+
+  // ✅ FIX definitivo: la “X” debe ser SOLO la del <i class="fa-xmark">
+  // - No agregamos ::before ni texto extra
+  // - Forzamos que el botón no renderice contenido adicional accidental
+  .modal__close {
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+    display: grid;
+    place-items: center;
+
+    &::before,
+    &::after {
+      content: none !important;
+      display: none !important;
+    }
+
+    i {
+      display: inline-block !important;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    // si algún CSS externo mete pseudo en el i
+    i::before,
+    i::after {
+      content: none !important;
+    }
+  }
+
+  // Mantengo tu clase por si luego decides usarla en HTML (NO se elimina nada)
+  .promo-close {
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: $color-text;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(0,0,0,0.10);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+
+    .promo-close__x {
+      font-size: 26px;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+
+    i {
+      display: none;
+    }
+
+    &:hover { transform: translateY(-1px); }
+    &:active { transform: translateY(0); }
+  }
+}

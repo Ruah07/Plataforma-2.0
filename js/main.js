@@ -498,4 +498,79 @@ Modalidad: ${course.modality || "Por confirmar"}.
       }
     });
   }
+
+  // ==========================================
+  // 8) MODAL PROMO (CRONOGRAMA) ✅ AUTO-OPEN EN CADA CARGA
+  // ==========================================
+  const promoModal = $("#promoModal");
+
+  if (promoModal) {
+    const overlay = $(".modal__overlay", promoModal);
+    const dialog = $(".modal__dialog", promoModal);
+    const closeEls = $$("[data-close='true']", promoModal);
+
+    let lastFocus = null;
+
+    const getFocusable = () =>
+      $$(
+        "a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex='-1'])",
+        promoModal
+      ).filter((el) => !el.hasAttribute("disabled"));
+
+    const openPromo = () => {
+      // Evita abrir si ya hay otro modal abierto
+      const anyOpen = $$(".modal.is-open").some((m) => m !== promoModal);
+      if (anyOpen) return;
+
+      lastFocus = document.activeElement;
+
+      promoModal.classList.add("is-open");
+      promoModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+
+      const focusables = getFocusable();
+      (focusables[0] || dialog)?.focus?.();
+    };
+
+    const closePromo = () => {
+      promoModal.classList.remove("is-open");
+      promoModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    closeEls.forEach((el) => el.addEventListener("click", closePromo));
+    if (overlay) overlay.addEventListener("click", closePromo);
+
+    document.addEventListener("keydown", (e) => {
+      if (!promoModal.classList.contains("is-open")) return;
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closePromo();
+      }
+
+      if (e.key === "Tab") {
+        const focusables = getFocusable();
+        if (!focusables.length) return;
+
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    // ✅ AUTO-OPEN: se abre SIEMPRE en cada carga/recarga
+    // (un pequeño delay para que el DOM/render estén listos)
+    setTimeout(() => {
+      openPromo();
+    }, 250);
+  }
 });

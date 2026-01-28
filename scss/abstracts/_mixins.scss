@@ -1,13 +1,36 @@
-// scss/abstracts/_mixins.scss
+// /scss/abstracts/_mixins.scss
+// Mixins globales (breakpoints + helpers)
 
-@mixin respond-to($breakpoint) {
-  @if $breakpoint == 'tablet' {
-    @media (min-width: 768px) { @content; }
+// Breakpoints (mobile-first)
+$breakpoints: (
+  "mobile": 480px,
+  "tablet": 900px,
+  "desktop": 1024px,
+  "wide": 1200px
+);
+
+// Uso: @include respond-to('tablet') { ... }
+@mixin respond-to($point) {
+  @if map-has-key($breakpoints, $point) {
+    @media (min-width: map-get($breakpoints, $point)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$point}' no existe en $breakpoints.";
   }
 }
 
-@mixin flex-between {
+// Helpers flex reutilizables
+@mixin flex-between($gap: 1rem) {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: $gap;
+}
+
+@mixin flex-center($gap: 0.75rem) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
 }

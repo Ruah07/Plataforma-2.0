@@ -1,44 +1,62 @@
+@use "sass:color";
+
 // scss/components/_buttons.scss
+// Botones base del proyecto
 
 .btn {
-  display: inline-block;
-  padding: 0.8rem 1.5rem;
-  border-radius: $border-radius;
-  font-weight: 600;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-weight: 800;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-  font-family: $font-primary;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 
-  // Botón Principal (Rosa)
-  &-primary {
-    background-color: $color-primary;
-    color: white;
-    box-shadow: 0 4px 6px rgba($color-primary, 0.2); // Sombra suave del mismo color
-
-    &:hover {
-      background-color: darken($color-primary, 10%);
-      transform: translateY(-2px); // Efecto de elevación sutil
-      box-shadow: 0 6px 12px rgba($color-primary, 0.3);
-    }
+  &:active {
+    transform: scale(0.99);
   }
 
-  // Botón Secundario (Azul) - Ideal para "Más información"
-  &-secondary {
-    background-color: transparent;
-    color: $color-secondary;
-    border: 2px solid $color-secondary;
-
-    &:hover {
-      background-color: $color-secondary;
-      color: white;
-    }
+  &:focus-visible {
+    outline: 3px solid rgba($color-secondary, 0.55);
+    outline-offset: 2px;
   }
 
-  // Botón Pequeño (Para tarjetas o sidebar)
-  &-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+  &[disabled],
+  &.is-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
   }
+}
+
+.btn-primary {
+  background: $color-primary;
+  color: white;
+  box-shadow: 0 12px 26px rgba($color-primary, 0.22);
+
+  &:hover {
+    background: color.adjust($color-primary, $lightness: -6%);
+    box-shadow: 0 16px 34px rgba($color-primary, 0.26);
+  }
+}
+
+.btn-secondary {
+  background: rgba($color-secondary, 0.12);
+  color: $color-text;
+  border-color: rgba($color-secondary, 0.22);
+
+  &:hover {
+    background: rgba($color-secondary, 0.18);
+    border-color: rgba($color-secondary, 0.28);
+  }
+}
+
+.btn-sm {
+  padding: 0.65rem 0.95rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
 }

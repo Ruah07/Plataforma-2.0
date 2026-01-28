@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // scss/components/_cards.scss
 
 // Tarjeta General (Base)
@@ -33,7 +35,7 @@
     }
 
     p {
-      color: lighten($color-accent, 20%);
+      color: color.adjust($color-accent, $lightness: 20%);
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
       line-height: 1.5;
