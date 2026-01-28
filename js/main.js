@@ -333,9 +333,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (elInstructor) elInstructor.textContent = course.instructor || "Instructor por confirmar";
       if (elAudience) elAudience.textContent = course.audience || "Información por confirmar.";
 
-      // Campus
+      /// Campus (por curso)
       if (campusBtn) {
-        campusBtn.href = "https://capacita.cidet.org.co/";
+        const campusUrl = course.campusUrl || "https://capacita.cidet.org.co/";
+        campusBtn.href = campusUrl;
         campusBtn.target = "_blank";
         campusBtn.rel = "noopener noreferrer";
         campusBtn.setAttribute(
@@ -500,10 +501,12 @@ Modalidad: ${course.modality || "Por confirmar"}.
   }
 
   // ==========================================
-  // 8) MODAL PROMO (CRONOGRAMA) ✅ AUTO-OPEN EN CADA CARGA
+  // 8) MODAL PROMOCIONES – AUTO OPEN (CRONOGRAMA) ✅ AJUSTADO
+  // - Se muestra en cada recarga de página
   // ==========================================
   const promoModal = $("#promoModal");
 
+  // Solo corre si existe el modal en esta página (cronograma.html)
   if (promoModal) {
     const overlay = $(".modal__overlay", promoModal);
     const dialog = $(".modal__dialog", promoModal);
@@ -518,9 +521,8 @@ Modalidad: ${course.modality || "Por confirmar"}.
       ).filter((el) => !el.hasAttribute("disabled"));
 
     const openPromo = () => {
-      // Evita abrir si ya hay otro modal abierto
-      const anyOpen = $$(".modal.is-open").some((m) => m !== promoModal);
-      if (anyOpen) return;
+      // Evita re-abrir si ya está abierto por alguna razón
+      if (promoModal.classList.contains("is-open")) return;
 
       lastFocus = document.activeElement;
 
@@ -538,6 +540,9 @@ Modalidad: ${course.modality || "Por confirmar"}.
       document.body.classList.remove("modal-open");
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     };
+
+    // Abre automáticamente en cada recarga (con pequeño delay)
+    setTimeout(openPromo, 800);
 
     closeEls.forEach((el) => el.addEventListener("click", closePromo));
     if (overlay) overlay.addEventListener("click", closePromo);
@@ -566,11 +571,5 @@ Modalidad: ${course.modality || "Por confirmar"}.
         }
       }
     });
-
-    // ✅ AUTO-OPEN: se abre SIEMPRE en cada carga/recarga
-    // (un pequeño delay para que el DOM/render estén listos)
-    setTimeout(() => {
-      openPromo();
-    }, 250);
   }
 });
